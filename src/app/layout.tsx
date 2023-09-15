@@ -1,7 +1,7 @@
 'use client';
 import { Toggle } from '@cyberlofi^_^/components/toggle/toggle.component';
 import './globals.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDate } from '@cyberlofi^_^/hooks/useDate';
 
 export default function RootLayout({
@@ -23,8 +23,8 @@ export default function RootLayout({
   ];
   const datetime = useDate();
   const [src, setSrc] = useState(backgroundVideos[0]);
-  const logState : any = (state: boolean) => {
-    console.log('Toggled:', state);
+  const [locations, setLocation] = useState('');
+  const logState: any = (state: boolean) => {
     const srcVid: any = backgroundVideos.find((f) => f.id !== src.id);
     setSrc(srcVid);
   };
@@ -35,8 +35,17 @@ export default function RootLayout({
   };
 
   const getCurrentTime = (input: any) => {
-    return  input?.time;
+    return input?.time;
   };
+
+  useEffect(() => {
+    document.addEventListener('contextmenu', (event) => event.preventDefault());
+    fetch('https://ipinfo.io/json?token=aa0dcfa79c8a0c')
+      .then((response) => response.json())
+      .then((jsonResponse) => {
+        setLocation(jsonResponse.city + ' ' + jsonResponse.country);
+      });
+  }, []);
 
   return (
     <html lang="en">
@@ -72,11 +81,11 @@ export default function RootLayout({
           <main style={{ flexGrow: 1 }}>{children}</main>
           <footer>
             <div style={{ margin: 10 }}></div>
+            <span>{locations}</span>
+            <div style={{ margin: 10 }}></div>
             <span>{getCurrentTime(datetime)}</span>
             <Toggle label="" toggled={true} onClick={logState} />
-            <button className="playButton" onClick={playAudio}>
-              {' '}
-            </button>
+            <button className="playButton" onClick={playAudio}></button>
             <span>Play music</span>
           </footer>
         </div>

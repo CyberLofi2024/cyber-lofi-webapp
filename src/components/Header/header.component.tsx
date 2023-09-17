@@ -19,7 +19,7 @@ function HeaderComponent({ logState }: Props) {
 
   return (
     <header className="lg:hidden md:mx-5 mx-2 mt-5">
-      <div className="bg-black/60 w-full flex items-center justify-between p-2 border-[0.1px] border-slate-400 gap-5 rounded-lg text-sm hover:brightness-110">
+      <div className="bg-black/60 w-full flex items-center justify-between p-2 md:px-3 border-[0.1px] border-slate-400 gap-5 rounded-lg text-sm hover:brightness-110">
         <div className="flex items-center gap-5">
           <span>{getCurrentTime(datetime)}</span>
           <Toggle label="" toggled={true} onClick={logState} />

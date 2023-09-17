@@ -6,13 +6,13 @@ function ScreenTools() {
     {
       name: 'Picture in Picture',
       component: (
-        <WindowIcon className="h-8 w-8 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-1 cursor-pointer rounded-lg" />
+        <WindowIcon className="h-7 w-7 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-[1px] cursor-pointer rounded-lg" />
       ),
     },
     {
       name: 'Full Screen',
       component: (
-        <ViewfinderCircleIcon className="h-8 w-8 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-1 cursor-pointer rounded-lg" />
+        <ViewfinderCircleIcon className="h-7 w-7 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-[1px] cursor-pointer rounded-lg" />
       ),
     },
   ];

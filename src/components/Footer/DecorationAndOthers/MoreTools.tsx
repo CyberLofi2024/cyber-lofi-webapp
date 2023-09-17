@@ -20,43 +20,43 @@ function MoreTools() {
     {
       name: 'Calendar',
       component: (
-        <CalendarDaysIcon className="h-7 w-7 md:h-8 md:w-8 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-1 cursor-pointer rounded-lg" />
+        <CalendarDaysIcon className="h-6 w-6 md:h-7 md:w-7 text-white text-lg p-[1px] rounded-lg" />
       ),
     },
     {
       name: 'Links',
       component: (
-        <LinkIcon className="h-7 w-7 md:h-8 md:w-8 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-1 cursor-pointer rounded-lg" />
+        <LinkIcon className="h-6 w-6 md:h-7 md:w-7 text-white text-lg p-[1px] rounded-lg" />
       ),
     },
     {
       name: 'Youtube',
       component: (
-        <PlayIcon className="h-7 w-7 md:h-8 md:w-8 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-1 cursor-pointer rounded-lg" />
+        <PlayIcon className="h-6 w-6 md:h-7 md:w-7 text-white text-lg p-[1px] rounded-lg" />
       ),
     },
     {
       name: 'Timer',
       component: (
-        <ClockIcon className="h-7 w-7 md:h-8 md:w-8 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-1 cursor-pointer rounded-lg" />
+        <ClockIcon className="h-6 w-6 md:h-7 md:w-7 text-white text-lg p-[1px] rounded-lg" />
       ),
     },
     {
       name: 'Notes',
       component: (
-        <BookOpenIcon className="h-7 w-7 md:h-8 md:w-8 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-1 cursor-pointer rounded-lg" />
+        <BookOpenIcon className="h-6 w-6 md:h-7 md:w-7 text-white text-lg p-[1px] rounded-lg" />
       ),
     },
     {
       name: 'PDF Reader',
       component: (
-        <DocumentTextIcon className="h-7 w-7 md:h-8 md:w-8 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-1 cursor-pointer rounded-lg" />
+        <DocumentTextIcon className="h-6 w-6 md:h-7 md:w-7 text-white text-lg p-[1px] rounded-lg" />
       ),
     },
     {
       name: 'Insights',
       component: (
-        <ChartBarIcon className="h-7 w-7 md:h-8 md:w-8 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-1 cursor-pointer rounded-lg" />
+        <ChartBarIcon className="h-6 w-6 md:h-7 md:w-7 text-white text-lg p-[1px] rounded-lg" />
       ),
     },
   ];
@@ -64,7 +64,10 @@ function MoreTools() {
   const onRenderMoreTool = () => {
     return panelArr.map((item) => {
       return (
-        <div key={item.name} className="flex items-center min-w-[8rem] gap-2">
+        <div
+          key={item.name}
+          className="flex items-center min-w-[8rem] gap-2 p-[1px] rounded-lg cursor-pointer hover:bg-slate-100/20 transition-colors duration-300"
+        >
           {item.component}
           <p className="text-sm">{item.name}</p>
         </div>
@@ -81,7 +84,7 @@ function MoreTools() {
         <></>
       )}
       <Squares2X2Icon
-        className="h-8 w-8 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-1 cursor-pointer rounded-lg"
+        className="h-7 w-7 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-[1px] cursor-pointer rounded-lg"
         onClick={handleOpenMoreTools}
       />
     </div>

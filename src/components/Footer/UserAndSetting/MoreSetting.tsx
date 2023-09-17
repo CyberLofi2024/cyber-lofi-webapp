@@ -19,37 +19,37 @@ function MoreSetting() {
     {
       name: 'Pricing',
       component: (
-        <CurrencyDollarIcon className="h-8 w-8 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-1 cursor-pointer rounded-lg" />
+        <CurrencyDollarIcon className="h-7 w-7 text-white text-lg p-[1px] rounded-lg" />
       ),
     },
     {
       name: 'Contact us',
       component: (
-        <EnvelopeIcon className="h-8 w-8 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-1 cursor-pointer rounded-lg" />
+        <EnvelopeIcon className="h-7 w-7 text-white text-lg p-[1px] rounded-lg" />
       ),
     },
     {
       name: 'How it works',
       component: (
-        <WrenchIcon className="h-8 w-8 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-1 cursor-pointer rounded-lg" />
+        <WrenchIcon className="h-7 w-7 text-white text-lg p-[1px] rounded-lg" />
       ),
     },
     {
       name: 'FAQ',
       component: (
-        <QuestionMarkCircleIcon className="h-8 w-8 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-1 cursor-pointer rounded-lg" />
+        <QuestionMarkCircleIcon className="h-7 w-7 text-white text-lg p-[1px] rounded-lg" />
       ),
     },
     {
       name: 'About us',
       component: (
-        <InformationCircleIcon className="h-8 w-8 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-1 cursor-pointer rounded-lg" />
+        <InformationCircleIcon className="h-7 w-7 text-white text-lg p-[1px] rounded-lg" />
       ),
     },
     {
       name: 'Share feedback',
       component: (
-        <ChatBubbleBottomCenterTextIcon className="h-8 w-8 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-1 cursor-pointer rounded-lg" />
+        <ChatBubbleBottomCenterTextIcon className="h-7 w-7 text-white text-lg p-[1px] rounded-lg" />
       ),
     },
   ];
@@ -57,7 +57,10 @@ function MoreSetting() {
   const onRenderMoreTool = () => {
     return panelArr.map((item) => {
       return (
-        <div key={item.name} className="flex items-center min-w-[10rem] gap-2">
+        <div
+          key={item.name}
+          className="flex items-center min-w-[10rem] gap-2 cursor-pointer hover:bg-slate-100/20 transition-colors duration-300 p-[1px] rounded-lg"
+        >
           {item.component}
           <p className="text-sm">{item.name}</p>
         </div>
@@ -74,7 +77,7 @@ function MoreSetting() {
         <></>
       )}
       <EllipsisVerticalIcon
-        className="h-8 w-8 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-1 rounded-lg cursor-pointer"
+        className="h-7 w-7 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-[1px] rounded-lg cursor-pointer"
         onClick={handleOpenMoreSettings}
       />
     </div>

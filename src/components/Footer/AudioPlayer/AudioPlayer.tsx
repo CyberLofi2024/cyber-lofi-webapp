@@ -6,31 +6,35 @@ import {
   SpeakerWaveIcon,
   SpeakerXMarkIcon,
 } from '@heroicons/react/24/outline';
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 
-function AudioPlayer() {
-  const [isPlayed, setIsPlayed] = useState(false);
+interface Props {
+  isAudioPlayed: boolean;
+  setIsAudioPlayed: Dispatch<SetStateAction<boolean>>;
+}
+
+function AudioPlayer({ isAudioPlayed, setIsAudioPlayed }: Props) {
   const au: any = document.getElementById('au');
 
   const handlePlayAudio = () => {
-    setIsPlayed(!isPlayed);
-    isPlayed ? au?.pause() : au?.play();
+    setIsAudioPlayed(!isAudioPlayed);
+    isAudioPlayed ? au?.pause() : au?.play();
   };
   const panelArr = [
     {
       name: 'Previous',
       component: (
-        <BackwardIcon className="h-8 w-8 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-1 cursor-pointer rounded-lg" />
+        <BackwardIcon className="h-7 w-7 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-[1px] cursor-pointer rounded-lg" />
       ),
     },
     {
       name: 'Play',
       component: (
         <button onClick={handlePlayAudio}>
-          {isPlayed ? (
-            <PauseCircleIcon className="h-8 w-8 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-1 cursor-pointer rounded-lg" />
+          {isAudioPlayed ? (
+            <PauseCircleIcon className="h-7 w-7 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-[1px] cursor-pointer rounded-lg" />
           ) : (
-            <PlayCircleIcon className="h-8 w-8 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-1 cursor-pointer rounded-lg" />
+            <PlayCircleIcon className="h-7 w-7 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-[1px] cursor-pointer rounded-lg" />
           )}
         </button>
       ),
@@ -38,19 +42,19 @@ function AudioPlayer() {
     {
       name: 'Next',
       component: (
-        <ForwardIcon className="h-8 w-8 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-1 cursor-pointer rounded-lg" />
+        <ForwardIcon className="h-7 w-7 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-[1px] cursor-pointer rounded-lg" />
       ),
     },
     {
       name: 'Volume',
       component: (
-        <SpeakerWaveIcon className="h-8 w-8 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-1 cursor-pointer rounded-lg" />
+        <SpeakerWaveIcon className="h-7 w-7 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-[1px] cursor-pointer rounded-lg" />
       ),
     },
     {
       name: 'Mute',
       component: (
-        <SpeakerXMarkIcon className="h-8 w-8 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-1 cursor-pointer rounded-lg" />
+        <SpeakerXMarkIcon className="h-7 w-7 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-[1px] cursor-pointer rounded-lg" />
       ),
     },
   ];

@@ -2,7 +2,6 @@ import React from 'react';
 import { Toggle } from '../toggle/toggle.component';
 import { useDate } from '@cyberlofi^_^/hooks/useDate';
 import AudioPlayer from '../Footer/AudioPlayer/AudioPlayer';
-import UserAndSetting from '../Footer/UserAndSetting/UserAndSetting';
 import HeaderSetting from './HeaderSetting/HeaderSetting';
 
 interface Props {

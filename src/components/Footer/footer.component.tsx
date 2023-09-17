@@ -1,8 +1,6 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Toggle } from '../toggle/toggle.component';
 import { useDate } from '@cyberlofi^_^/hooks/useDate';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
 import { HomeIcon } from '@heroicons/react/24/outline';
 import AudioPlayer from './AudioPlayer/AudioPlayer';

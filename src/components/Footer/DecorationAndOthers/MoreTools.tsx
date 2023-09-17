@@ -12,7 +12,6 @@ import React, { useState } from 'react';
 
 function MoreTools() {
   const [isOpenMoreTools, setIsOpenMoreTools] = useState(false);
-  console.log('isOpenMoreTools: ', isOpenMoreTools);
   const handleOpenMoreTools = () => {
     setIsOpenMoreTools(!isOpenMoreTools);
   };

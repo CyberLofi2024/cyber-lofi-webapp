@@ -1,8 +1,4 @@
-import {
-  Cog8ToothIcon,
-  EllipsisVerticalIcon,
-  UserCircleIcon,
-} from '@heroicons/react/24/outline';
+import { Cog8ToothIcon, UserCircleIcon } from '@heroicons/react/24/outline';
 import React from 'react';
 import MoreSetting from './MoreSetting';
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Toggle } from '../toggle/toggle.component';
 import { useDate } from '@cyberlofi^_^/hooks/useDate';
 import Image from 'next/image';
@@ -10,9 +10,11 @@ import UserAndSetting from './UserAndSetting/UserAndSetting';
 
 interface Props {
   logState: (state: boolean) => void;
+  isAudioPlayed: boolean;
+  setIsAudioPlayed: Dispatch<SetStateAction<boolean>>;
 }
 
-function FooterComponent({ logState }: Props) {
+function FooterComponent({ logState, isAudioPlayed, setIsAudioPlayed }: Props) {
   const datetime = useDate();
   const [locations, setLocation] = useState('');
 
@@ -36,7 +38,7 @@ function FooterComponent({ logState }: Props) {
       name: 'Home',
       component: (
         <div className="flex items-center">
-          <HomeIcon className="h-8 w-8 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-1 cursor-pointer rounded-lg" />
+          <HomeIcon className="h-7 w-7 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-[1px] cursor-pointer rounded-lg" />
           <div className="h-5 rounded-full mx-3 w-[2px] bg-slate-300 opacity-50"></div>
         </div>
       ),
@@ -45,7 +47,10 @@ function FooterComponent({ logState }: Props) {
       name: 'Audio Player',
       component: (
         <div className="flex items-center">
-          <AudioPlayer />
+          <AudioPlayer
+            isAudioPlayed={isAudioPlayed}
+            setIsAudioPlayed={setIsAudioPlayed}
+          />
           <div className="h-5 rounded-full mx-3 w-[2px] bg-slate-300 opacity-50"></div>
         </div>
       ),

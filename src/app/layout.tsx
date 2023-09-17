@@ -28,6 +28,8 @@ export default function RootLayout({
     setSrc(srcVid);
   };
 
+  const [isAudioPlayed, setAudioIsPlayed] = useState(false);
+
   return (
     <html lang="en">
       <body>
@@ -60,9 +62,17 @@ export default function RootLayout({
           preload="auto"
         />
         <div className="appContainer">
-          <HeaderComponent logState={logState} />
+          <HeaderComponent
+            isAudioPlayed={isAudioPlayed}
+            setIsAudioPlayed={setAudioIsPlayed}
+            logState={logState}
+          />
           <main style={{ flexGrow: 1 }}>{children}</main>
-          <FooterComponent logState={logState} />
+          <FooterComponent
+            isAudioPlayed={isAudioPlayed}
+            setIsAudioPlayed={setAudioIsPlayed}
+            logState={logState}
+          />
         </div>
       </body>
     </html>

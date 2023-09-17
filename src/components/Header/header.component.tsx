@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { Toggle } from '../toggle/toggle.component';
 import { useDate } from '@cyberlofi^_^/hooks/useDate';
 import AudioPlayer from '../Footer/AudioPlayer/AudioPlayer';
@@ -6,9 +6,11 @@ import HeaderSetting from './HeaderSetting/HeaderSetting';
 
 interface Props {
   logState: (state: boolean) => void;
+  isAudioPlayed: boolean;
+  setIsAudioPlayed: Dispatch<SetStateAction<boolean>>;
 }
 
-function HeaderComponent({ logState }: Props) {
+function HeaderComponent({ logState, isAudioPlayed, setIsAudioPlayed }: Props) {
   const datetime = useDate();
 
   const getCurrentTime = (input: any) => {
@@ -25,7 +27,10 @@ function HeaderComponent({ logState }: Props) {
           <Toggle label="" toggled={true} onClick={logState} />
         </div>
         <div className="flex items-center">
-          <AudioPlayer />
+          <AudioPlayer
+            isAudioPlayed={isAudioPlayed}
+            setIsAudioPlayed={setIsAudioPlayed}
+          />
         </div>
         <HeaderSetting />
       </div>

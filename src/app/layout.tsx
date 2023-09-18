@@ -3,7 +3,7 @@ import { Toggle } from '@cyberlofi^_^/components/toggle/toggle.component';
 import './globals.scss';
 import { useEffect, useState } from 'react';
 import { useDate } from '@cyberlofi^_^/hooks/useDate';
-
+import { handleYoutubeAudio } from '@cyberlofi^_^/utils/getYoutubeAudio';
 export default function RootLayout({
   children,
 }: {
@@ -45,18 +45,20 @@ export default function RootLayout({
       .then((jsonResponse) => {
         setLocation(jsonResponse.city + ' ' + jsonResponse.country);
       });
+    handleYoutubeAudio('ANf1IH2zdwI', 'au');
   }, []);
 
   return (
     <html lang="en">
       <body>
-        <audio
+        {/* <audio
           id="au"
           src="https://lofico.nyc3.cdn.digitaloceanspaces.com/tracks/Twindex%20-%20Down%20The%20Avenue.mp3"
           preload="auto"
           autoPlay
           loop
-        ></audio>
+        ></audio> */}
+        <audio id="au" loop></audio>
 
         <video
           hidden={src.id !== 'day'}

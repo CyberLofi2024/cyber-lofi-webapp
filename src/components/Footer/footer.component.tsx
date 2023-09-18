@@ -12,9 +12,21 @@ interface Props {
   logState: (state: boolean) => void;
   isAudioPlayed: boolean;
   setIsAudioPlayed: Dispatch<SetStateAction<boolean>>;
+  isToggled: boolean;
+  toggle: Dispatch<SetStateAction<boolean>>;
+  isAudioMuted: boolean;
+  setIsAudioMuted: Dispatch<SetStateAction<boolean>>;
 }
 
-function FooterComponent({ logState, isAudioPlayed, setIsAudioPlayed }: Props) {
+function FooterComponent({
+  logState,
+  isAudioPlayed,
+  setIsAudioPlayed,
+  isToggled,
+  toggle,
+  isAudioMuted,
+  setIsAudioMuted,
+}: Props) {
   const datetime = useDate();
   const [locations, setLocation] = useState('');
 
@@ -50,6 +62,8 @@ function FooterComponent({ logState, isAudioPlayed, setIsAudioPlayed }: Props) {
           <AudioPlayer
             isAudioPlayed={isAudioPlayed}
             setIsAudioPlayed={setIsAudioPlayed}
+            isAudioMuted={isAudioMuted}
+            setIsAudioMuted={setIsAudioMuted}
           />
           <div className="h-5 rounded-full mx-3 w-[2px] bg-slate-300 opacity-50"></div>
         </div>
@@ -83,7 +97,12 @@ function FooterComponent({ logState, isAudioPlayed, setIsAudioPlayed }: Props) {
           <div className="flex items-center gap-5">
             <p>{locations}</p>
             <span>{getCurrentTime(datetime)}</span>
-            <Toggle label="" toggled={true} onClick={logState} />
+            <Toggle
+              label=""
+              onClick={logState}
+              isToggled={isToggled}
+              toggle={toggle}
+            />
           </div>
           <div className="flex items-center">
             {onRenderTools()}

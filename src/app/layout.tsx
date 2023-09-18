@@ -66,6 +66,8 @@ export default function RootLayout({
   };
 
   const [isAudioPlayed, setAudioIsPlayed] = useState(false);
+  const [isAudioMuted, setAudioIsMuted] = useState(false);
+  const [isToggled, toggle] = useState(true);
   useLayoutEffect(() => {
     handleCreateElementByAxises('keyboard', 'Keyboard', 20, 70);
   }, []);
@@ -106,6 +108,10 @@ export default function RootLayout({
             isAudioPlayed={isAudioPlayed}
             setIsAudioPlayed={setAudioIsPlayed}
             logState={logState}
+            isToggled={isToggled}
+            toggle={toggle}
+            isAudioMuted={isAudioMuted}
+            setIsAudioMuted={setAudioIsMuted}
           />
           <main id="main" style={{ flexGrow: 1 }}>
             {children}
@@ -114,6 +120,10 @@ export default function RootLayout({
             isAudioPlayed={isAudioPlayed}
             setIsAudioPlayed={setAudioIsPlayed}
             logState={logState}
+            isToggled={isToggled}
+            toggle={toggle}
+            isAudioMuted={isAudioMuted}
+            setIsAudioMuted={setAudioIsMuted}
           />
         </div>
       </body>

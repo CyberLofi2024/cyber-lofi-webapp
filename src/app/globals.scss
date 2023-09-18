@@ -25,9 +25,8 @@ body {
 
 .videoBG {
   height: 100vh;
-  width: 100%;
-  object-fit: fill;
-  transition: all 4s ease-in-out;
+  width: 100vw;
+  object-fit: cover;
 }
 
 .playButton {
@@ -50,7 +49,6 @@ body {
   width: 100%;
   z-index: 100;
 }
-
 
 footer {
   display: flex;

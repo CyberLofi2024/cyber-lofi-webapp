@@ -1,9 +1,9 @@
 'use client';
-import { Toggle } from '@cyberlofi^_^/components/toggle/toggle.component';
 import './globals.scss';
-import { useEffect, useState } from 'react';
-import { useDate } from '@cyberlofi^_^/hooks/useDate';
-import { handleYoutubeAudio } from '@cyberlofi^_^/utils/getYoutubeAudio';
+import { useState } from 'react';
+import HeaderComponent from '@cyberlofi^_^/components/Header/header.component';
+import FooterComponent from '@cyberlofi^_^/components/Footer/footer.component';
+
 export default function RootLayout({
   children,
 }: {
@@ -21,32 +21,14 @@ export default function RootLayout({
       audio: '',
     },
   ];
-  const datetime = useDate();
   const [src, setSrc] = useState(backgroundVideos[0]);
-  const [locations, setLocation] = useState('');
+
   const logState: any = (state: boolean) => {
     const srcVid: any = backgroundVideos.find((f) => f.id !== src.id);
     setSrc(srcVid);
   };
 
-  const playAudio = () => {
-    const au: any = document.getElementById('au');
-    au.play();
-  };
-
-  const getCurrentTime = (input: any) => {
-    return input?.time;
-  };
-
-  useEffect(() => {
-    document.addEventListener('contextmenu', (event) => event.preventDefault());
-    fetch('https://ipinfo.io/json?token=aa0dcfa79c8a0c')
-      .then((response) => response.json())
-      .then((jsonResponse) => {
-        setLocation(jsonResponse.city + ' ' + jsonResponse.country);
-      });
-    handleYoutubeAudio('ANf1IH2zdwI', 'au');
-  }, []);
+  const [isAudioPlayed, setAudioIsPlayed] = useState(false);
 
   return (
     <html lang="en">
@@ -55,7 +37,7 @@ export default function RootLayout({
           id="au"
           src="https://lofico.nyc3.cdn.digitaloceanspaces.com/tracks/Twindex%20-%20Down%20The%20Avenue.mp3"
           preload="auto"
-          autoPlay
+          // autoPlay
           loop
         ></audio> */}
         <audio id="au" loop></audio>
@@ -68,6 +50,7 @@ export default function RootLayout({
           autoPlay
           className="videoBG"
           preload="auto"
+          id="dd"
         />
         <video
           hidden={src.id !== 'night'}
@@ -79,17 +62,17 @@ export default function RootLayout({
           preload="auto"
         />
         <div className="appContainer">
-          <header>Header</header>
+          <HeaderComponent
+            isAudioPlayed={isAudioPlayed}
+            setIsAudioPlayed={setAudioIsPlayed}
+            logState={logState}
+          />
           <main style={{ flexGrow: 1 }}>{children}</main>
-          <footer>
-            <div style={{ margin: 10 }}></div>
-            <span>{locations}</span>
-            <div style={{ margin: 10 }}></div>
-            <span>{getCurrentTime(datetime)}</span>
-            <Toggle label="" toggled={true} onClick={logState} />
-            <button className="playButton" onClick={playAudio}></button>
-            <span>Play music</span>
-          </footer>
+          <FooterComponent
+            isAudioPlayed={isAudioPlayed}
+            setIsAudioPlayed={setAudioIsPlayed}
+            logState={logState}
+          />
         </div>
       </body>
     </html>

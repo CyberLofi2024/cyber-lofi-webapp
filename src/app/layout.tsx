@@ -1,8 +1,10 @@
 'use client';
 import './globals.scss';
-import { useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import HeaderComponent from '@cyberlofi^_^/components/Header/header.component';
 import FooterComponent from '@cyberlofi^_^/components/Footer/footer.component';
+import { Tooltip } from 'react-tooltip';
+import { AudioDefault } from '@cyberlofi^_^/commons/constants';
 
 export default function RootLayout({
   children,
@@ -28,19 +30,57 @@ export default function RootLayout({
     setSrc(srcVid);
   };
 
+  const handleCreateElementByAxises = (
+    id: string,
+    label: string,
+    x: number,
+    y: number,
+  ) => {
+    const e = document.createElement('div');
+    const container: any = document.getElementById('main');
+    container.appendChild(e);
+    e.id = id;
+    e.style.width = '30px';
+    e.style.height = '30px';
+    e.style.borderRadius = '50%';
+    e.style.background = 'transparent';
+    e.style.border = '3px solid white';
+    e.style.position = 'absolute';
+    e.style.zIndex = '999999';
+    e.style.top = y + '%';
+    e.style.left = x + '%';
+    e.style.cursor = 'pointer';
+    e.style.display = 'flex';
+    e.style.justifyContent = 'center';
+    e.style.alignItems = 'center';
+    e.setAttribute('data-tooltip-id', id + '-tooltip');
+    e.setAttribute('data-tooltip-content', label);
+    // set child circle element
+    const child = document.createElement('div');
+    child.id = id + '-child';
+    child.style.width = '70%';
+    child.style.height = '70%';
+    child.style.borderRadius = '50%';
+    child.style.margin = 'auto';
+    e.appendChild(child);
+  };
+
   const [isAudioPlayed, setAudioIsPlayed] = useState(false);
+  useLayoutEffect(() => {
+    handleCreateElementByAxises('keyboard', 'Keyboard', 20, 70);
+  }, []);
 
   return (
     <html lang="en">
       <body>
-        {/* <audio
+        <Tooltip id="keyboard-tooltip" />
+        <audio
           id="au"
-          src="https://lofico.nyc3.cdn.digitaloceanspaces.com/tracks/Twindex%20-%20Down%20The%20Avenue.mp3"
+          src={AudioDefault}
           preload="auto"
           // autoPlay
           loop
-        ></audio> */}
-        <audio id="au" loop></audio>
+        ></audio>
 
         <video
           hidden={src.id !== 'day'}
@@ -67,7 +107,9 @@ export default function RootLayout({
             setIsAudioPlayed={setAudioIsPlayed}
             logState={logState}
           />
-          <main style={{ flexGrow: 1 }}>{children}</main>
+          <main id="main" style={{ flexGrow: 1 }}>
+            {children}
+          </main>
           <FooterComponent
             isAudioPlayed={isAudioPlayed}
             setIsAudioPlayed={setAudioIsPlayed}

@@ -14,9 +14,8 @@ interface Props {
 }
 
 function AudioPlayer({ isAudioPlayed, setIsAudioPlayed }: Props) {
-  const au: any = document.getElementById('au');
-
   const handlePlayAudio = () => {
+    const au: any = document.getElementById('au');
     setIsAudioPlayed(!isAudioPlayed);
     isAudioPlayed ? au?.pause() : au?.play();
   };

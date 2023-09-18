@@ -43,9 +43,7 @@ export default function RootLayout({
 
         <video
           hidden={src.id !== 'day'}
-          src={
-            src.id === 'day' ? backgroundVideos[0].src : backgroundVideos[1].src
-          }
+          src={backgroundVideos[0].src}
           muted
           loop
           autoPlay

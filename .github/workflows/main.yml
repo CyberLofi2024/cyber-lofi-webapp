@@ -43,7 +43,11 @@ jobs:
           npm install
           npm run build
       - name: Zip app files
-        run: zip -r next.zip .next/* package.json package-lock.json    
+        run: zip -r next.zip .next/* package.json package-lock.json
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+          name: node-app
       - name: 'Deploy to Azure WebApp'
         uses: azure/webapps-deploy@v2
         with:

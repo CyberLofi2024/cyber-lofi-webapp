@@ -16,11 +16,7 @@ env:
 on:
   push:
     branches:
-      - main
-  pull_request:
-    types: [opened, synchronize, reopened, closed]
-    branches:
-      - main
+      - deploy-static/*
 
 permissions:
   issues: write

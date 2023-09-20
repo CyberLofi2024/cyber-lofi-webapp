@@ -1,3 +1,4 @@
+// @ts-ignore
 import { getRandomInt } from "@/utils/random";
 import { useEffect, useState } from "react";
 

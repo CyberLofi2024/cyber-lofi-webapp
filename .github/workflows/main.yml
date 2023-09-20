@@ -11,51 +11,32 @@ on:
     - main 
 
 env:
-  AZURE_WEBAPP_NAME: Cyberlofi   # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
+  AZURE_WEBAPP_NAME: cyberlofi   # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: './cyberlofi'      # set this to the path to your web app project, defaults to the repository root
   NODE_VERSION: '18.x'                # set this to the node version to use
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up Node.js version
-        uses: actions/setup-node@v2
-        with:
-          node-version: '18.x'
-
-      - name: npm install
-        run: npm install
-      
-      - name: Build
-        run: npm run build --if-present
-      
-      # You can also run tests here if needed
-      
-      - name: Archive changed files
-        id: archive
-        run: |
-          git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | xargs zip release.zip
-
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v2
-        with:
-          name: node-app
-          path: release.zip
-  deploy:
+  build-and-deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
     steps:
-    - name: Download artifact from build job
-      uses: actions/download-artifact@v2
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v1
       with:
-        name: node-app
+        node-version: ${{ env.NODE_VERSION }}
+    - name: npm install, build, and test
+      run: |
+        # Build and test the project, then
+        # deploy to Azure Web App.
+        npm install
+        npm run build --if-present
+        npm run test --if-present
+    - name: Zip app files
+      run: zip -r next.zip .next/* package.json package-lock.json
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
       with: 
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        package: release.zip
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}

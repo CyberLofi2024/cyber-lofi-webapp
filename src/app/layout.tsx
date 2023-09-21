@@ -76,7 +76,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Tooltip id="keyboard-tooltip" />
-        <div className="relative h-screen">
+        <div className="relative h-screen" id="container">
           <div className="relative w-screen h-screen overflow-scroll">
             <div className="min-h-screen min-w-[100vw] h-screen absolute left-[150%] md:left-[115%] lg:left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.77778vh] lg:w-full">
               <video

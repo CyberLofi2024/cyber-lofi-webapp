@@ -56,7 +56,6 @@ footer {
   align-items: center;
 }
 
-
 main {
   margin-bottom: 100px;
 }
@@ -66,4 +65,8 @@ main {
   #keyboard-child {
     background: burlywood;
   }
+}
+
+#container ::-webkit-scrollbar {
+  display: none;
 }

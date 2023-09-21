@@ -76,34 +76,36 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Tooltip id="keyboard-tooltip" />
-        <audio
-          id="au"
-          src={AudioDefault}
-          preload="auto"
-          // autoPlay
-          loop
-        ></audio>
-
-        <video
-          hidden={src.id !== 'day'}
-          src={backgroundVideos[0].src}
-          muted
-          loop
-          autoPlay
-          className="videoBG"
-          preload="auto"
-          id="dd"
-        />
-        <video
-          hidden={src.id !== 'night'}
-          src={backgroundVideos[1].src}
-          muted
-          loop
-          autoPlay
-          className="videoBG"
-          preload="auto"
-        />
-        <div className="appContainer">
+        <div className="relative h-screen">
+          <div className="relative w-screen h-screen overflow-scroll">
+            <div className="min-h-screen min-w-[100vw] h-screen absolute left-[150%] md:left-[115%] lg:left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.77778vh] lg:w-full">
+              <video
+                hidden={src.id !== 'day'}
+                src={backgroundVideos[0].src}
+                muted
+                loop
+                autoPlay
+                className="w-full h-full absolute left-0 top-0 md:static lg:object-cover"
+                preload="auto"
+              />
+              <video
+                hidden={src.id !== 'night'}
+                src={backgroundVideos[1].src}
+                muted
+                loop
+                autoPlay
+                className="w-full h-full absolute left-0 top-0 md:static lg:object-cover"
+                preload="auto"
+              />
+              <audio
+                id="au"
+                src={AudioDefault}
+                preload="auto"
+                // autoPlay
+                loop
+              ></audio>
+            </div>
+          </div>
           <HeaderComponent
             isAudioPlayed={isAudioPlayed}
             setIsAudioPlayed={setAudioIsPlayed}

@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 export const Toggle = (input: {
   label: string;
-  toggled: boolean;
   onClick: Function;
+  isToggled: boolean;
+  toggle: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const { toggled, onClick } = input;
-  const [isToggled, toggle] = useState(toggled);
+  const { onClick, isToggled, toggle } = input;
 
   const callback = () => {
     toggle(!isToggled);

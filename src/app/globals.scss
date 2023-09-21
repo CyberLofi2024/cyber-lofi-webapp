@@ -59,14 +59,3 @@ footer {
 main {
   margin-bottom: 100px;
 }
-
-#keyboard:hover {
-  border-color: burlywood !important;
-  #keyboard-child {
-    background: burlywood;
-  }
-}
-
-#container ::-webkit-scrollbar {
-  display: none;
-}

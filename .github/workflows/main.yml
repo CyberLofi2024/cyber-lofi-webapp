@@ -6,9 +6,6 @@ on:
     branches:
     - feature/*
     - test/*
-  pull_request:
-    branches:
-    - main 
 
 env:
   AZURE_WEBAPP_NAME: cyberlofi   # set this to your application's name

@@ -1,3 +1,4 @@
+import { AudioDefault } from '@cyberlofi^_^/commons/constants';
 import React from 'react';
 import { Tooltip } from 'react-tooltip';
 
@@ -31,6 +32,9 @@ function ThemeMusic({
       </div>
       <Tooltip anchorSelect=".nan-tooltip" place="bottom">
         {title}
+        <audio loop preload="auto">
+          <source src={AudioDefault} type="audio/mpeg" />
+        </audio>
       </Tooltip>
     </div>
   );

@@ -89,9 +89,14 @@ function HeaderSetting() {
     });
   };
   return (
-    <div className="relative">
+    <button
+      onBlur={() => {
+        setIsOpenHeaderSettings(false);
+      }}
+      className="relative"
+    >
       {isOpenHeaderSettings ? (
-        <div className="rounded-xl absolute -bottom-[19.8rem] right-0 flex flex-col gap-1 bg-black/50 p-2">
+        <div className="rounded-xl absolute -bottom-[19rem] right-0 flex flex-col gap-1 bg-black/50 p-2">
           {onRenderMoreTool()}
         </div>
       ) : (
@@ -101,7 +106,7 @@ function HeaderSetting() {
         className="h-7 w-7 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-[1px] rounded-lg cursor-pointer"
         onClick={handleOpenHeaderSettings}
       />
-    </div>
+    </button>
   );
 }
 

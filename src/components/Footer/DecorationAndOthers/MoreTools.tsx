@@ -75,9 +75,14 @@ function MoreTools() {
     });
   };
   return (
-    <div className="relative">
+    <button
+      onBlur={() => {
+        setIsOpenMoreTools(false);
+      }}
+      className="relative"
+    >
       {isOpenMoreTools ? (
-        <div className="rounded-xl absolute -top-[17rem] md:-top-[19.5rem] left-1/2 flex flex-col gap-2 -translate-x-1/2 bg-black/50 p-2 md:p-3">
+        <div className="rounded-xl absolute -top-[16.5rem] md:-top-[19.5rem] left-1/2 flex flex-col gap-2 -translate-x-1/2 bg-black/50 p-2 md:p-3">
           {onRenderMoreTool()}
         </div>
       ) : (
@@ -87,7 +92,7 @@ function MoreTools() {
         className="h-7 w-7 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-[1px] cursor-pointer rounded-lg"
         onClick={handleOpenMoreTools}
       />
-    </div>
+    </button>
   );
 }
 

@@ -45,13 +45,15 @@ function ThemeMusic({ title, audio, top, left, right, bottom }: Props) {
         <div
           className={`${
             isPlaying ? '-bottom-16' : '-bottom-10'
-          } absolute bg-black/20 rounded-lg w-40 px-3 py-1 group-hover:block hidden`}
+          } absolute bg-black/20 rounded-lg w-40 px-3`}
         >
-          <p className="text-center">{title}</p>
+          <div className="group-hover:block hidden pt-1">
+            <p className="text-center">{title}</p>
+          </div>
           <div
             className={`${
-              isPlaying ? 'group-hover:opacity-100' : 'hidden'
-            } opacity-0`}
+              isPlaying ? 'group-focus-within:opacity-100' : 'hidden'
+            } opacity-0 pb-1`}
           >
             <AudioOnObject
               play={isPlaying}

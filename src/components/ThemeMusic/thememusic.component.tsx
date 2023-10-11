@@ -31,7 +31,7 @@ function ThemeMusic({ title, audio, top, left, right, bottom }: Props) {
         left,
         right,
         bottom,
-        position: 'fixed',
+        position: 'absolute',
       }}
     >
       <div className="group flex flex-col justify-center items-center gap-2">

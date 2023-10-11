@@ -84,22 +84,22 @@ export default function RootLayout({
                 // autoPlay
                 loop
               ></audio>
+              {musicPoints?.map((item) => {
+                return (
+                  <ThemeMusic
+                    key={item.id}
+                    title={item.type}
+                    audio={item.audio}
+                    top={item.top ?? 'auto'}
+                    bottom={item.bottom ?? 'auto'}
+                    left={item.left ?? 'auto'}
+                    right={item.right ?? 'auto'}
+                    isPlaying={item.play}
+                  />
+                );
+              })}
             </div>
           </div>
-          {musicPoints?.map((item) => {
-            return (
-              <ThemeMusic
-                key={item.id}
-                title={item.type}
-                audio={item.audio}
-                top={item.top ?? 'auto'}
-                bottom={item.bottom ?? 'auto'}
-                left={item.left ?? 'auto'}
-                right={item.right ?? 'auto'}
-                isPlaying={item.play}
-              />
-            );
-          })}
 
           <HeaderComponent
             isAudioPlayed={isAudioPlayed}

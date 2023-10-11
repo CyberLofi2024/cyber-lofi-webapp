@@ -3,9 +3,10 @@ import React, { useState, ChangeEvent, MutableRefObject } from 'react';
 interface Props {
   play: boolean;
   audioRef: MutableRefObject<HTMLAudioElement | null>;
+  audioURL: string;
 }
 
-function AudioOnObject({ play, audioRef }: Props) {
+function AudioOnObject({ play, audioRef, audioURL }: Props) {
   const [volume, setVolume] = useState<number>(1); // Initial volume at maximum (1 or 100%)
 
   const handleVolumeChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -19,7 +20,7 @@ function AudioOnObject({ play, audioRef }: Props) {
   return (
     <div className="group">
       <audio ref={audioRef} controls className="hidden" autoPlay={play} loop>
-        <source src="/medias/rain-sound.mp3" type="audio/mpeg" />
+        <source src={audioURL} type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
 

@@ -1,17 +1,35 @@
 'use client';
 import './globals.scss';
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import HeaderComponent from '@cyberlofi^_^/components/Header/header.component';
 import FooterComponent from '@cyberlofi^_^/components/Footer/footer.component';
-import { Tooltip } from 'react-tooltip';
 import { AudioDefault } from '@cyberlofi^_^/commons/constants';
 import ThemeMusic from '@cyberlofi^_^/components/ThemeMusic/thememusic.component';
+import { musicData } from '@cyberlofi^_^/utils/testData';
+
+interface ImMusicData {
+  id: number;
+  type: string;
+  audio: string;
+  top: string | null;
+  left: string | null;
+  right: string | null;
+  bottom: string | null;
+  play: boolean;
+}
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const [musicPoints, setMusicPoints] = useState<ImMusicData[]>();
+
+  useEffect(() => {
+    // Read the JSON data
+    setMusicPoints(musicData);
+  }, []);
+
   const backgroundVideos = [
     {
       id: 'day',
@@ -68,7 +86,20 @@ export default function RootLayout({
               ></audio>
             </div>
           </div>
-          <ThemeMusic title="Keyboard" />
+          {musicPoints?.map((item) => {
+            return (
+              <ThemeMusic
+                key={item.id}
+                title={item.type}
+                audio={item.audio}
+                top={item.top ?? 'auto'}
+                bottom={item.bottom ?? 'auto'}
+                left={item.left ?? 'auto'}
+                right={item.right ?? 'auto'}
+                isPlaying={item.play}
+              />
+            );
+          })}
 
           <HeaderComponent
             isAudioPlayed={isAudioPlayed}

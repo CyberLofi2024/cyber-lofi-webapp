@@ -1,22 +1,17 @@
 import React, { useRef, useState } from 'react';
-import { Tooltip } from 'react-tooltip';
 import AudioOnObject from './AudioOnObject';
 
 type Props = {
   title: string;
-  top?: string;
-  left?: string;
-  right?: string;
-  bottom?: string;
+  audio: string;
+  top?: string | number;
+  left?: string | number;
+  right?: string | number;
+  bottom?: string | number;
+  isPlaying: boolean;
 };
 
-function ThemeMusic({
-  title,
-  top = '70%',
-  left = '20%',
-  right,
-  bottom,
-}: Props) {
+function ThemeMusic({ title, audio, top, left, right, bottom }: Props) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const togglePlayPause = () => {
@@ -36,7 +31,7 @@ function ThemeMusic({
         left,
         right,
         bottom,
-        position: 'absolute',
+        position: 'fixed',
       }}
     >
       <div className="group flex flex-col justify-center items-center gap-2">
@@ -53,7 +48,11 @@ function ThemeMusic({
           } bg-black/20 rounded-lg w-40 px-3 py-1 opacity-0`}
         >
           <p>{title}</p>
-          <AudioOnObject play={isPlaying} audioRef={audioRef} />
+          <AudioOnObject
+            play={isPlaying}
+            audioRef={audioRef}
+            audioURL={audio}
+          />
         </div>
       </div>
     </div>

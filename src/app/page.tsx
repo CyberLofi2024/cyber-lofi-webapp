@@ -30,7 +30,7 @@ export default function Home() {
   useEffect(() => {
     // Read the JSON data
     setMusicPoints(musicData);
-    if (!session) {
+    if (status !== 'loading' && !session) {
       if (setIsOpenLogin) {
         setIsOpenLogin(true);
       }
@@ -59,10 +59,6 @@ export default function Home() {
   const [isAudioPlayed, setAudioIsPlayed] = useState(false);
   const [isAudioMuted, setAudioIsMuted] = useState(false);
   const [isToggled, toggle] = useState(true);
-
-  if (status === 'loading') {
-    return <></>;
-  }
 
   return (
     <LoginContext.Provider value={{ isOpenLogin, setIsOpenLogin }}>

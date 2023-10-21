@@ -2,11 +2,11 @@ import { LoginContext } from "@cyberlofi^_^/app/context/loginContext";
 import {
   ArrowLeftOnRectangleIcon,
   UserCircleIcon,
-  WrenchIcon,
 } from "@heroicons/react/24/outline";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import React, { useContext, useState } from "react";
+import { toast } from "react-toastify";
 
 function UserOptions() {
   const { data: session } = useSession();
@@ -38,7 +38,12 @@ function UserOptions() {
         <ArrowLeftOnRectangleIcon className="h-7 w-7 rounded-lg p-[1px] text-lg text-white" />
       ),
       feature: () => {
-        signOut({ callbackUrl: "/" });
+        setIsOpenUserOptions(false);
+        signOut({ callbackUrl: "/", redirect: false }).then((res) => {
+          toast.info("Log out successfully!", {
+            position: toast.POSITION.TOP_CENTER,
+          });
+        });
       },
     },
   ];

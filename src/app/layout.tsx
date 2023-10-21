@@ -1,7 +1,7 @@
-'use client';
-import { MetaMaskUIProvider } from '@metamask/sdk-react-ui';
-import NextAuthSessionProvider from './providers/sessionProvider';
-import { Session } from 'next-auth';
+"use client";
+import { MetaMaskUIProvider } from "@metamask/sdk-react-ui";
+import NextAuthSessionProvider from "./providers/sessionProvider";
+import { Session } from "next-auth";
 
 export default function RootLayout({
   children,
@@ -16,7 +16,7 @@ export default function RootLayout({
         <MetaMaskUIProvider
           sdkOptions={{
             dappMetadata: {
-              name: 'Demo UI React App',
+              name: "Demo UI React App",
             },
           }}
         >

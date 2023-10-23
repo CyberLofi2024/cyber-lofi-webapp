@@ -16,20 +16,18 @@ import GoogleLoginButton from "./GoogleLoginButton";
 import { LoginContext } from "@cyberlofi^_^/app/context/loginContext";
 import { IUserLogin } from "@cyberlofi^_^/types/allTypes";
 import { MetaMaskButton } from "@metamask/sdk-react-ui";
+import { useMetaMaskAcount } from "@cyberlofi^_^/hooks/useMetaMaskAccount";
 
 function LoginComponent() {
   const { isOpenLogin, setIsOpenLogin } = useContext(LoginContext);
   const router = useRouter();
   const { data: session } = useSession();
 
-  const [loginData, setLoginData] = useState<IUserLogin>({
-    email: "",
-    password: "",
-  });
   const [isLogined, setIsLogined] = useState(false);
+  const { account, balance } = useMetaMaskAcount();
 
   useEffect(() => {
-    if (session) {
+    if (session || (account && balance)) {
       setIsLogined(true);
       if (setIsOpenLogin) {
         setIsOpenLogin(false);
@@ -47,7 +45,6 @@ function LoginComponent() {
   } = useForm<IUserLogin>();
   const onSubmit: SubmitHandler<IUserLogin> = (data) => {
     if (data.email === "admin@cyberlofi.com" && data.password === "admin123") {
-      setLoginData(data);
       toast.success("Welcome to Cyber Lofi Cinema!", {
         position: toast.POSITION.TOP_CENTER,
       });
@@ -163,11 +160,7 @@ function LoginComponent() {
           </div>
         </form>
         <div className="flex flex-col gap-3">
-          <MetaMaskButton
-            theme={"light"}
-            color="white"
-            connectedText="Connected"
-          />
+          <MetaMaskButton theme={"light"} color="white" />
           <GoogleLoginButton />
         </div>
       </div>

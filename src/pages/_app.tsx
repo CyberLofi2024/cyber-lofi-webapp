@@ -1,8 +1,8 @@
-import { NextPage } from 'next';
-import type { AppProps } from 'next/app';
-import { ReactElement, ReactNode } from 'react';
-import { Quicksand } from 'next/font/google';
-import { SessionProvider } from 'next-auth/react';
+import { NextPage } from "next";
+import type { AppProps } from "next/app";
+import { ReactElement, ReactNode } from "react";
+import { Quicksand } from "next/font/google";
+import { SessionProvider } from "next-auth/react";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -13,8 +13,8 @@ type AppPropsWithLayout = AppProps & {
 };
 
 const quicksand = Quicksand({
-  subsets: ['latin'],
-  display: 'swap',
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export default function App({
@@ -34,6 +34,6 @@ export default function App({
       <SessionProvider session={session}>
         <Component {...pageProps} />
       </SessionProvider>
-    </>,
+    </>
   );
 }

@@ -1,6 +1,8 @@
 import { LoginContext } from "@cyberlofi^_^/app/context/loginContext";
+import { useMetaMaskAcount } from "@cyberlofi^_^/hooks/useMetaMaskAccount";
 import {
   ArrowLeftOnRectangleIcon,
+  CurrencyDollarIcon,
   UserCircleIcon,
 } from "@heroicons/react/24/outline";
 import { signOut, useSession } from "next-auth/react";
@@ -14,6 +16,11 @@ function UserOptions() {
   const [isOpenUserOptionss, setIsOpenUserOptions] = useState(false);
   const handleOpenUserOptions = () => {
     setIsOpenUserOptions(!isOpenUserOptionss);
+  };
+  const { account, balance } = useMetaMaskAcount();
+
+  const handler = (...args: unknown[]) => {
+    console.log("args: ", args);
   };
 
   const panelArr = [
@@ -31,6 +38,21 @@ function UserOptions() {
           <h2>{session?.user?.name ?? "User Name"}</h2>
         </div>
       ),
+      ishowed: session ?? false,
+    },
+    {
+      name: account ?? "Account",
+      component: (
+        <UserCircleIcon className="h-7 w-7 rounded-lg p-[1px] text-lg text-white" />
+      ),
+      ishowed: account ?? false,
+    },
+    {
+      name: balance ?? "Balance",
+      component: (
+        <CurrencyDollarIcon className="h-7 w-7 rounded-lg p-[1px] text-lg text-white" />
+      ),
+      ishowed: balance ?? false,
     },
     {
       name: "Log out",
@@ -38,6 +60,7 @@ function UserOptions() {
         <ArrowLeftOnRectangleIcon className="h-7 w-7 rounded-lg p-[1px] text-lg text-white" />
       ),
       feature: () => {
+        window.ethereum?.on("disconnect", handler);
         setIsOpenUserOptions(false);
         signOut({ callbackUrl: "/", redirect: false }).then((res) => {
           toast.info("Log out successfully!", {
@@ -45,20 +68,23 @@ function UserOptions() {
           });
         });
       },
+      ishowed: true,
     },
   ];
 
   const onRenderMoreTool = () => {
-    return panelArr.map((item) => {
-      return (
+    return panelArr.map((item, index) => {
+      return item.ishowed ? (
         <div
-          key={item.name}
+          key={String(item.name) + index}
           className="flex min-w-[10rem] cursor-pointer items-center gap-2 rounded-lg p-[1px] transition-colors duration-300 hover:bg-slate-100/20"
           onClick={item?.feature ?? Object}
         >
           {item.component}
-          <p className="text-sm">{item.name}</p>
+          <p className="text-sm">{String(item.name)}</p>
         </div>
+      ) : (
+        <></>
       );
     });
   };
@@ -72,7 +98,11 @@ function UserOptions() {
       {isOpenUserOptionss ? (
         <div
           className={`${
-            !session ? "-top-[4.5rem]" : "-top-[7.5rem]"
+            session
+              ? "-top-[7.5rem]"
+              : account && balance
+              ? "-top-[9.5rem]"
+              : "-top-[4.5rem]"
           } absolute -right-[4rem] flex flex-col gap-2 rounded-xl bg-black/50 p-3`}
         >
           {onRenderMoreTool()}
@@ -83,7 +113,7 @@ function UserOptions() {
       <UserCircleIcon
         className="h-7 w-7 cursor-pointer rounded-lg p-[1px] text-lg text-white transition-colors duration-300 hover:bg-slate-100/20"
         onClick={
-          session
+          session || (account && balance)
             ? handleOpenUserOptions
             : () => {
                 if (setIsOpenLogin) {

@@ -1,16 +1,35 @@
 'use client';
 import './globals.scss';
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import HeaderComponent from '@cyberlofi^_^/components/Header/header.component';
 import FooterComponent from '@cyberlofi^_^/components/Footer/footer.component';
-import { Tooltip } from 'react-tooltip';
 import { AudioDefault } from '@cyberlofi^_^/commons/constants';
+import ThemeMusic from '@cyberlofi^_^/components/ThemeMusic/thememusic.component';
+import { musicData } from '@cyberlofi^_^/utils/testData';
+
+interface ImMusicData {
+  id: number;
+  type: string;
+  audio: string;
+  top: string | null;
+  left: string | null;
+  right: string | null;
+  bottom: string | null;
+  play: boolean;
+}
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const [musicPoints, setMusicPoints] = useState<ImMusicData[]>();
+
+  useEffect(() => {
+    // Read the JSON data
+    setMusicPoints(musicData);
+  }, []);
+
   const backgroundVideos = [
     {
       id: 'day',
@@ -30,52 +49,13 @@ export default function RootLayout({
     setSrc(srcVid);
   };
 
-  const handleCreateElementByAxises = (
-    id: string,
-    label: string,
-    x: number,
-    y: number,
-  ) => {
-    const e = document.createElement('div');
-    const container: any = document.getElementById('main');
-    container.appendChild(e);
-    e.id = id;
-    e.style.width = '30px';
-    e.style.height = '30px';
-    e.style.borderRadius = '50%';
-    e.style.background = 'transparent';
-    e.style.border = '3px solid white';
-    e.style.position = 'absolute';
-    e.style.zIndex = '999999';
-    e.style.top = y + '%';
-    e.style.left = x + '%';
-    e.style.cursor = 'pointer';
-    e.style.display = 'flex';
-    e.style.justifyContent = 'center';
-    e.style.alignItems = 'center';
-    e.setAttribute('data-tooltip-id', id + '-tooltip');
-    e.setAttribute('data-tooltip-content', label);
-    // set child circle element
-    const child = document.createElement('div');
-    child.id = id + '-child';
-    child.style.width = '70%';
-    child.style.height = '70%';
-    child.style.borderRadius = '50%';
-    child.style.margin = 'auto';
-    e.appendChild(child);
-  };
-
   const [isAudioPlayed, setAudioIsPlayed] = useState(false);
   const [isAudioMuted, setAudioIsMuted] = useState(false);
   const [isToggled, toggle] = useState(true);
-  useLayoutEffect(() => {
-    handleCreateElementByAxises('keyboard', 'Keyboard', 20, 70);
-  }, []);
 
   return (
     <html lang="en">
       <body>
-        <Tooltip id="keyboard-tooltip" />
         <div className="relative h-screen" id="container">
           <div className="relative w-screen h-screen overflow-scroll">
             <div className="min-h-screen min-w-[100vw] h-screen absolute left-[150%] md:left-[115%] lg:left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.77778vh] lg:w-full">
@@ -104,8 +84,23 @@ export default function RootLayout({
                 // autoPlay
                 loop
               ></audio>
+              {musicPoints?.map((item) => {
+                return (
+                  <ThemeMusic
+                    key={item.id}
+                    title={item.type}
+                    audio={item.audio}
+                    top={item.top ?? 'auto'}
+                    bottom={item.bottom ?? 'auto'}
+                    left={item.left ?? 'auto'}
+                    right={item.right ?? 'auto'}
+                    isPlaying={item.play}
+                  />
+                );
+              })}
             </div>
           </div>
+
           <HeaderComponent
             isAudioPlayed={isAudioPlayed}
             setIsAudioPlayed={setAudioIsPlayed}

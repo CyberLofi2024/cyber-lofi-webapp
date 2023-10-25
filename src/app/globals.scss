@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  input[type='range'] {
+    @apply appearance-none bg-yellow-200 caret-red-500;
+  }
+
+  input[type='range']::-webkit-slider-runnable-track {
+    @apply rounded-full;
+  }
+
+  input[type='range']::-moz-range-track {
+    @apply rounded-full;
+  }
+
+  input[type='range']::-ms-track {
+    @apply rounded-full;
+  }
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -58,15 +76,4 @@ footer {
 
 main {
   margin-bottom: 100px;
-}
-
-#keyboard:hover {
-  border-color: burlywood !important;
-  #keyboard-child {
-    background: burlywood;
-  }
-}
-
-#container ::-webkit-scrollbar {
-  display: none;
 }

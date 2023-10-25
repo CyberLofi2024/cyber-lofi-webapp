@@ -1,0 +1,32 @@
+export const musicData = [
+  {
+    id: 1,
+    type: 'Keyboard',
+    audio: 'https://assets.mixkit.co/active_storage/sfx/2540/2540-preview.mp3',
+    top: '70%',
+    left: '20%',
+    right: null,
+    bottom: null,
+    play: false,
+  },
+  {
+    id: 2,
+    type: 'Rain',
+    audio: 'https://assets.mixkit.co/active_storage/sfx/2392/2392-preview.mp3',
+    top: null,
+    left: null,
+    right: '50%',
+    bottom: '50%',
+    play: false,
+  },
+  {
+    id: 3,
+    type: 'Bird',
+    audio: 'https://assets.mixkit.co/active_storage/sfx/1239/1239-preview.mp3',
+    top: null,
+    left: null,
+    right: '20%',
+    bottom: '40%',
+    play: false,
+  },
+];

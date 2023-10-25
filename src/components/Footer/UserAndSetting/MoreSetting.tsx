@@ -68,7 +68,12 @@ function MoreSetting() {
     });
   };
   return (
-    <div className="relative">
+    <button
+      onBlur={() => {
+        setIsOpenMoreSettings(false);
+      }}
+      className="relative"
+    >
       {isOpenMoreSettings ? (
         <div className="rounded-xl absolute -top-[17rem] right-0 flex flex-col gap-2 bg-black/50 p-3">
           {onRenderMoreTool()}
@@ -80,7 +85,7 @@ function MoreSetting() {
         className="h-7 w-7 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-[1px] rounded-lg cursor-pointer"
         onClick={handleOpenMoreSettings}
       />
-    </div>
+    </button>
   );
 }
 

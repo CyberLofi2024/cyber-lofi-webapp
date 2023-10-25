@@ -12,9 +12,21 @@ interface Props {
   logState: (state: boolean) => void;
   isAudioPlayed: boolean;
   setIsAudioPlayed: Dispatch<SetStateAction<boolean>>;
+  isToggled: boolean;
+  toggle: Dispatch<SetStateAction<boolean>>;
+  isAudioMuted: boolean;
+  setIsAudioMuted: Dispatch<SetStateAction<boolean>>;
 }
 
-function FooterComponent({ logState, isAudioPlayed, setIsAudioPlayed }: Props) {
+function FooterComponent({
+  logState,
+  isAudioPlayed,
+  setIsAudioPlayed,
+  isToggled,
+  toggle,
+  isAudioMuted,
+  setIsAudioMuted,
+}: Props) {
   const datetime = useDate();
   const [locations, setLocation] = useState('');
 
@@ -50,6 +62,8 @@ function FooterComponent({ logState, isAudioPlayed, setIsAudioPlayed }: Props) {
           <AudioPlayer
             isAudioPlayed={isAudioPlayed}
             setIsAudioPlayed={setIsAudioPlayed}
+            isAudioMuted={isAudioMuted}
+            setIsAudioMuted={setIsAudioMuted}
           />
           <div className="h-5 rounded-full mx-3 w-[2px] bg-slate-300 opacity-50"></div>
         </div>
@@ -77,13 +91,18 @@ function FooterComponent({ logState, isAudioPlayed, setIsAudioPlayed }: Props) {
   };
 
   return (
-    <footer className="mx-6 mb-5">
-      <div className="bg-black/60 w-4/5 mx-auto md:w-full px-4 py-2 border-[0.1px] border-slate-400 gap-5 rounded-lg text-sm hover:brightness-110">
+    <footer className="mx-6 mb-5 absolute bottom-0 lg:w-auto left-0 right-0">
+      <div className="bg-black/60 w-fit lg:w-full mx-auto px-8 py-2 border-[0.1px] border-slate-400 gap-5 rounded-lg text-sm hover:brightness-110">
         <div className="hidden lg:flex items-center justify-between">
           <div className="flex items-center gap-5">
             <p>{locations}</p>
             <span>{getCurrentTime(datetime)}</span>
-            <Toggle label="" toggled={true} onClick={logState} />
+            <Toggle
+              label=""
+              onClick={logState}
+              isToggled={isToggled}
+              toggle={toggle}
+            />
           </div>
           <div className="flex items-center">
             {onRenderTools()}

@@ -1,23 +1,23 @@
-import { Cog8ToothIcon, UserCircleIcon } from '@heroicons/react/24/outline';
-import React from 'react';
-import MoreSetting from './MoreSetting';
+import { Cog8ToothIcon, UserCircleIcon } from "@heroicons/react/24/outline";
+import React, { useContext } from "react";
+import MoreSetting from "./MoreSetting";
+import { LoginContext } from "@cyberlofi^_^/app/context/loginContext";
+import UserOptions from "./UserOptions";
 
 function UserAndSetting() {
   const panelArr = [
     {
-      name: 'User',
+      name: "User",
+      component: <UserOptions />,
+    },
+    {
+      name: "Setting",
       component: (
-        <UserCircleIcon className="h-8 w-8 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-1 rounded-lg" />
+        <Cog8ToothIcon className="h-7 w-7 cursor-pointer rounded-lg p-[1px] text-lg text-white transition-colors duration-300 hover:bg-slate-100/20" />
       ),
     },
     {
-      name: 'Setting',
-      component: (
-        <Cog8ToothIcon className="h-7 w-7 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-[1px] cursor-pointer rounded-lg" />
-      ),
-    },
-    {
-      name: 'More',
+      name: "More",
       component: <MoreSetting />,
     },
   ];

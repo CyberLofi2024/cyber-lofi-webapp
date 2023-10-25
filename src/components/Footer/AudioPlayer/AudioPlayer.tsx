@@ -6,19 +6,40 @@ import {
   SpeakerWaveIcon,
   SpeakerXMarkIcon,
 } from '@heroicons/react/24/outline';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 interface Props {
   isAudioPlayed: boolean;
   setIsAudioPlayed: Dispatch<SetStateAction<boolean>>;
+  isAudioMuted: boolean;
+  setIsAudioMuted: Dispatch<SetStateAction<boolean>>;
 }
 
-function AudioPlayer({ isAudioPlayed, setIsAudioPlayed }: Props) {
+function AudioPlayer({
+  isAudioPlayed,
+  setIsAudioPlayed,
+  isAudioMuted,
+  setIsAudioMuted,
+}: Props) {
   const handlePlayAudio = () => {
     const au: any = document.getElementById('au');
     setIsAudioPlayed(!isAudioPlayed);
     isAudioPlayed ? au?.pause() : au?.play();
+    setIsAudioMuted(false);
   };
+
+  const handleMuteAudio = () => {
+    const au = document.getElementById('au') as HTMLAudioElement;
+    setIsAudioMuted(true);
+    au.muted = true;
+  };
+
+  const handleUnmutedAudio = () => {
+    const au = document.getElementById('au') as HTMLAudioElement;
+    setIsAudioMuted(false);
+    au.muted = false;
+  };
+
   const panelArr = [
     {
       name: 'Previous',
@@ -45,15 +66,21 @@ function AudioPlayer({ isAudioPlayed, setIsAudioPlayed }: Props) {
       ),
     },
     {
-      name: 'Volume',
+      name: isAudioMuted ? 'Muted' : 'Volumn',
       component: (
-        <SpeakerWaveIcon className="h-7 w-7 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-[1px] cursor-pointer rounded-lg" />
-      ),
-    },
-    {
-      name: 'Mute',
-      component: (
-        <SpeakerXMarkIcon className="h-7 w-7 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-[1px] cursor-pointer rounded-lg" />
+        <div>
+          {isAudioMuted ? (
+            <SpeakerXMarkIcon
+              onClick={handleUnmutedAudio}
+              className="h-7 w-7 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-[1px] cursor-pointer rounded-lg"
+            />
+          ) : (
+            <SpeakerWaveIcon
+              onClick={handleMuteAudio}
+              className="h-7 w-7 text-white text-lg hover:bg-slate-100/20 transition-colors duration-300 p-[1px] cursor-pointer rounded-lg"
+            />
+          )}
+        </div>
       ),
     },
   ];

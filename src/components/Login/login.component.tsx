@@ -15,8 +15,9 @@ import { signIn, useSession } from "next-auth/react";
 import GoogleLoginButton from "./GoogleLoginButton";
 import { LoginContext } from "@cyberlofi^_^/app/context/loginContext";
 import { IUserLogin } from "@cyberlofi^_^/types/allTypes";
-import { MetaMaskButton } from "@metamask/sdk-react-ui";
-import { useMetaMaskAcount } from "@cyberlofi^_^/hooks/useMetaMaskAccount";
+
+import { useMetaMask } from "@cyberlofi^_^/hooks/useMetaMask";
+import MetaMaskButton from "./MetaMaskButton";
 
 function LoginComponent() {
   const { isOpenLogin, setIsOpenLogin } = useContext(LoginContext);
@@ -24,10 +25,12 @@ function LoginComponent() {
   const { data: session } = useSession();
 
   const [isLogined, setIsLogined] = useState(false);
-  const { account, balance } = useMetaMaskAcount();
+  const {
+    wallet: { accounts, balance },
+  } = useMetaMask();
 
   useEffect(() => {
-    if (session || (account && balance)) {
+    if (session || (accounts[0] && balance)) {
       setIsLogined(true);
       if (setIsOpenLogin) {
         setIsOpenLogin(false);
@@ -35,7 +38,7 @@ function LoginComponent() {
     } else {
       setIsLogined(false);
     }
-  }, [router, session]);
+  }, [router, session, accounts, balance]);
 
   const {
     register,
@@ -160,7 +163,7 @@ function LoginComponent() {
           </div>
         </form>
         <div className="flex flex-col gap-3">
-          <MetaMaskButton theme={"light"} color="white" />
+          <MetaMaskButton />
           <GoogleLoginButton />
         </div>
       </div>

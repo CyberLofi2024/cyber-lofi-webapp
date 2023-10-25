@@ -2,6 +2,7 @@
 import { MetaMaskUIProvider } from "@metamask/sdk-react-ui";
 import NextAuthSessionProvider from "./providers/sessionProvider";
 import { Session } from "next-auth";
+import { MetaMaskContextProvider } from "@cyberlofi^_^/hooks/useMetaMask";
 
 export default function RootLayout({
   children,
@@ -20,11 +21,13 @@ export default function RootLayout({
             },
           }}
         >
-          <NextAuthSessionProvider session={session}>
-            <main id="main" style={{ flexGrow: 1 }}>
-              {children}
-            </main>
-          </NextAuthSessionProvider>
+          <MetaMaskContextProvider>
+            <NextAuthSessionProvider session={session}>
+              <main id="main" style={{ flexGrow: 1 }}>
+                {children}
+              </main>
+            </NextAuthSessionProvider>
+          </MetaMaskContextProvider>
         </MetaMaskUIProvider>
       </body>
     </html>

@@ -1,5 +1,6 @@
 import { LoginContext } from "@cyberlofi^_^/app/context/loginContext";
-import { useMetaMaskAcount } from "@cyberlofi^_^/hooks/useMetaMaskAccount";
+import MetaMaskError from "@cyberlofi^_^/components/MetaMask/MetaMaskError/MetaMaskError";
+import { useMetaMask } from "@cyberlofi^_^/hooks/useMetaMask";
 import {
   ArrowLeftOnRectangleIcon,
   CurrencyDollarIcon,
@@ -7,7 +8,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
-import React, { useContext, useState } from "react";
+import React, { Fragment, useContext, useState } from "react";
 import { toast } from "react-toastify";
 
 function UserOptions() {
@@ -17,7 +18,10 @@ function UserOptions() {
   const handleOpenUserOptions = () => {
     setIsOpenUserOptions(!isOpenUserOptionss);
   };
-  const { account, balance } = useMetaMaskAcount();
+
+  const {
+    wallet: { accounts, balance },
+  } = useMetaMask();
 
   const handler = (...args: unknown[]) => {
     console.log("args: ", args);
@@ -25,6 +29,7 @@ function UserOptions() {
 
   const panelArr = [
     {
+      id: 11,
       name: "",
       component: (
         <div className="flex items-center gap-1 overflow-hidden">
@@ -41,13 +46,15 @@ function UserOptions() {
       ishowed: session ?? false,
     },
     {
-      name: account ?? "Account",
+      id: 12,
+      name: accounts[0] ?? "Account",
       component: (
         <UserCircleIcon className="h-7 w-7 rounded-lg p-[1px] text-lg text-white" />
       ),
-      ishowed: account ?? false,
+      ishowed: accounts[0] ?? false,
     },
     {
+      id: 13,
       name: balance ?? "Balance",
       component: (
         <CurrencyDollarIcon className="h-7 w-7 rounded-lg p-[1px] text-lg text-white" />
@@ -55,6 +62,7 @@ function UserOptions() {
       ishowed: balance ?? false,
     },
     {
+      id: 14,
       name: "Log out",
       component: (
         <ArrowLeftOnRectangleIcon className="h-7 w-7 rounded-lg p-[1px] text-lg text-white" />
@@ -73,10 +81,10 @@ function UserOptions() {
   ];
 
   const onRenderMoreTool = () => {
-    return panelArr.map((item, index) => {
+    return panelArr.map((item) => {
       return item.ishowed ? (
         <div
-          key={String(item.name) + index}
+          key={item.id}
           className="flex min-w-[10rem] cursor-pointer items-center gap-2 rounded-lg p-[1px] transition-colors duration-300 hover:bg-slate-100/20"
           onClick={item?.feature ?? Object}
         >
@@ -84,10 +92,11 @@ function UserOptions() {
           <p className="text-sm">{String(item.name)}</p>
         </div>
       ) : (
-        <></>
+        <Fragment key={String(item.name)}></Fragment>
       );
     });
   };
+
   return (
     <button
       onBlur={() => {
@@ -100,7 +109,7 @@ function UserOptions() {
           className={`${
             session
               ? "-top-[7.5rem]"
-              : account && balance
+              : accounts[0] && balance
               ? "-top-[9.5rem]"
               : "-top-[4.5rem]"
           } absolute -right-[4rem] flex flex-col gap-2 rounded-xl bg-black/50 p-3`}
@@ -110,10 +119,13 @@ function UserOptions() {
       ) : (
         <></>
       )}
+
+      <MetaMaskError />
+
       <UserCircleIcon
         className="h-7 w-7 cursor-pointer rounded-lg p-[1px] text-lg text-white transition-colors duration-300 hover:bg-slate-100/20"
         onClick={
-          session || (account && balance)
+          session || (accounts[0] && balance)
             ? handleOpenUserOptions
             : () => {
                 if (setIsOpenLogin) {

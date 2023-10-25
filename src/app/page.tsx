@@ -3,7 +3,6 @@ import "./globals.scss";
 import { AudioDefault } from "@cyberlofi^_^/commons/constants";
 import FooterComponent from "@cyberlofi^_^/components/Footer/footer.component";
 import HeaderComponent from "@cyberlofi^_^/components/Header/header.component";
-import LoginComponent from "@cyberlofi^_^/components/Login/login.component";
 import ThemeMusic from "@cyberlofi^_^/components/ThemeMusic/thememusic.component";
 import { musicData } from "@cyberlofi^_^/utils/testData";
 import { useSession } from "next-auth/react";
@@ -11,6 +10,7 @@ import { useEffect, useState } from "react";
 import { LoginContext } from "./context/loginContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LoginComponent from "@cyberlofi^_^/components/Login/login.component";
 
 interface ImMusicData {
   id: number;

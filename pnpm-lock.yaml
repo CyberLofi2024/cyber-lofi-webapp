@@ -20,6 +20,9 @@ dependencies:
   '@heroicons/react':
     specifier: ^2.0.18
     version: 2.0.18(react@18.2.0)
+  '@metamask/detect-provider':
+    specifier: ^2.0.0
+    version: 2.0.0
   '@metamask/sdk-react-ui':
     specifier: ^0.9.0
     version: 0.9.0(@types/react@18.2.21)(react-dom@18.2.0)(react-native@0.72.6)(react@18.2.0)(typescript@5.2.2)
@@ -2528,6 +2531,11 @@ packages:
       '@types/react': 18.2.21
       react: 18.2.0
     dev: true
+
+  /@metamask/detect-provider@2.0.0:
+    resolution: {integrity: sha512-sFpN+TX13E9fdBDh9lvQeZdJn4qYoRb/6QF2oZZK/Pn559IhCFacPMU1rMuqyXoFQF3JSJfii2l98B87QDPeCQ==}
+    engines: {node: '>=14.0.0'}
+    dev: false
 
   /@metamask/object-multiplex@1.2.0:
     resolution: {integrity: sha512-hksV602d3NWE2Q30Mf2Np1WfVKaGqfJRy9vpHAmelbaD0OkDt06/0KQkRR6UVYdMbTbkuEu8xN5JDUU80inGwQ==}

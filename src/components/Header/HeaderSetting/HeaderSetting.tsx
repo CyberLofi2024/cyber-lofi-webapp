@@ -1,4 +1,5 @@
 import { LoginContext } from "@cyberlofi^_^/app/context/loginContext";
+import { useMetaMask } from "@cyberlofi^_^/hooks/useMetaMask";
 import {
   ArrowLeftOnRectangleIcon,
   ChatBubbleBottomCenterTextIcon,
@@ -15,6 +16,7 @@ import {
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import React, { useContext, useState } from "react";
+import { toast } from "react-toastify";
 
 function HeaderSetting() {
   const { data: session } = useSession();
@@ -23,10 +25,13 @@ function HeaderSetting() {
     setIsOpenHeaderSettings(!isOpenHeaderSettings);
   };
   const { setIsOpenLogin } = useContext(LoginContext);
+  const {
+    wallet: { accounts, balance },
+  } = useMetaMask();
 
   const panelArr = [
     {
-      name: session ? "" : "Login",
+      name: session ? "" : accounts[0] && balance ? accounts[0] : "Login",
       component: session ? (
         <div className="flex items-center gap-1 overflow-hidden">
           <Image
@@ -41,12 +46,19 @@ function HeaderSetting() {
       ) : (
         <UserCircleIcon className="h-6 w-6 rounded-lg p-[1px] text-lg text-white transition-colors duration-300 md:h-7 md:w-7" />
       ),
+      isShow: true,
       feature: () => {
-        if (setIsOpenLogin) {
+        if (!session && !accounts[0] && !balance && setIsOpenLogin) {
           setIsOpenLogin(true);
         }
       },
-      isShow: true,
+    },
+    {
+      name: balance ?? "",
+      component: (
+        <CurrencyDollarIcon className="h-6 w-6 rounded-lg p-[1px] text-lg text-white transition-colors duration-300 md:h-7 md:w-7" />
+      ),
+      isShow: balance ?? false,
     },
     {
       name: "General Setting",
@@ -110,9 +122,14 @@ function HeaderSetting() {
         <ArrowLeftOnRectangleIcon className="h-7 w-7 rounded-lg p-[1px] text-lg text-white" />
       ),
       feature: () => {
-        signOut({ callbackUrl: "/" });
+        setIsOpenHeaderSettings(false);
+        signOut({ callbackUrl: "/", redirect: false }).then((res) => {
+          toast.info("Log out successfully!", {
+            position: toast.POSITION.TOP_CENTER,
+          });
+        });
       },
-      isShow: session ? true : false,
+      isShow: session || (accounts[0] && balance) ? true : false,
     },
   ];
 
@@ -127,7 +144,7 @@ function HeaderSetting() {
           } flex min-w-[10rem] cursor-pointer items-center gap-2 rounded-lg p-[1px] transition-colors duration-300 hover:bg-slate-100/20`}
         >
           {item.component}
-          <p className="text-sm">{item.name}</p>
+          <p className="max-w-[8rem] truncate text-sm">{item.name}</p>
         </div>
       );
     });
@@ -142,7 +159,11 @@ function HeaderSetting() {
       {isOpenHeaderSettings ? (
         <div
           className={`${
-            !session ? "-bottom-[19rem]" : "-bottom-[21rem]"
+            session
+              ? "-bottom-[21rem]"
+              : accounts[0] && balance
+              ? "-bottom-[23rem]"
+              : "-bottom-[19rem]"
           } absolute right-0 flex flex-col gap-1 rounded-xl bg-black/50 p-2`}
         >
           {onRenderMoreTool()}

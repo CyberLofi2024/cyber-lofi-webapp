@@ -14,21 +14,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <MetaMaskUIProvider
-          sdkOptions={{
-            dappMetadata: {
-              name: "Demo UI React App",
-            },
-          }}
-        >
-          <MetaMaskContextProvider>
-            <NextAuthSessionProvider session={session}>
-              <main id="main" style={{ flexGrow: 1 }}>
-                {children}
-              </main>
-            </NextAuthSessionProvider>
-          </MetaMaskContextProvider>
-        </MetaMaskUIProvider>
+        <MetaMaskContextProvider>
+          <NextAuthSessionProvider session={session}>
+            <main id="main" style={{ flexGrow: 1 }}>
+              {children}
+            </main>
+          </NextAuthSessionProvider>
+        </MetaMaskContextProvider>
       </body>
     </html>
   );

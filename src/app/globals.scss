@@ -3,19 +3,19 @@
 @tailwind utilities;
 
 @layer components {
-  input[type='range'] {
+  input[type="range"] {
     @apply appearance-none bg-yellow-200 caret-red-500;
   }
 
-  input[type='range']::-webkit-slider-runnable-track {
+  input[type="range"]::-webkit-slider-runnable-track {
     @apply rounded-full;
   }
 
-  input[type='range']::-moz-range-track {
+  input[type="range"]::-moz-range-track {
     @apply rounded-full;
   }
 
-  input[type='range']::-ms-track {
+  input[type="range"]::-ms-track {
     @apply rounded-full;
   }
 }
@@ -74,6 +74,18 @@ footer {
   align-items: center;
 }
 
-main {
-  margin-bottom: 100px;
+// add the code bellow
+@layer utilities {
+  @variants responsive {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+  }
 }

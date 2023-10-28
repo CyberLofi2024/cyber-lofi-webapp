@@ -67,7 +67,7 @@ export default function Home() {
       <ToastContainer />
       <LoginComponent />
       <div className="relative h-screen" id="container">
-        <div className="relative h-screen w-screen overflow-scroll">
+        <div className="no-scrollbar relative h-screen w-screen overflow-scroll">
           <div className="absolute left-[150%] top-1/2 h-screen min-h-screen w-[177.77778vh] min-w-[100vw] -translate-x-1/2 -translate-y-1/2 md:left-[115%] lg:left-1/2 lg:w-full">
             <video
               hidden={src.id !== "day"}

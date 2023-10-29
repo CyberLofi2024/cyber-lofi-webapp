@@ -45,7 +45,7 @@ function HeaderSetting() {
           />
           <h2>{session?.user?.name ?? "User Name"}</h2>
         </div>
-      ) : (
+      ) : accounts[0] ? (
         <Link
           className="flex w-full items-center gap-2"
           href={`https://etherscan.io/address/${accounts[0]}`}
@@ -55,6 +55,8 @@ function HeaderSetting() {
           <UserCircleIcon className="h-7 w-7 rounded-lg p-[1px] text-lg text-white" />
           {formatAddress(accounts[0])}
         </Link>
+      ) : (
+        <UserCircleIcon className="h-7 w-7 rounded-lg p-[1px] text-lg text-white" />
       ),
       isShow: true,
       feature: () => {

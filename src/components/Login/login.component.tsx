@@ -27,9 +27,23 @@ function LoginComponent() {
   const [isLogined, setIsLogined] = useState(false);
   const {
     wallet: { accounts, balance },
+    error,
+    errorMessage,
   } = useMetaMask();
 
   useEffect(() => {
+    if (error) {
+      toast.error(errorMessage, {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
+
+    if (accounts[0]) {
+      toast.success("MetaMask is Connected! Welcome to Cyber Lofi Cinema!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
+
     if (session || (accounts[0] && balance)) {
       setIsLogined(true);
       if (setIsOpenLogin) {
@@ -38,7 +52,7 @@ function LoginComponent() {
     } else {
       setIsLogined(false);
     }
-  }, [router, session, accounts, balance]);
+  }, [router, session, accounts[0], balance, accounts]);
 
   const {
     register,

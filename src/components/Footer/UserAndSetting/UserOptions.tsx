@@ -1,5 +1,4 @@
 import { LoginContext } from "@cyberlofi^_^/app/context/loginContext";
-import MetaMaskError from "@cyberlofi^_^/components/MetaMask/MetaMaskError/MetaMaskError";
 import { useMetaMask } from "@cyberlofi^_^/hooks/useMetaMask";
 import { formatAddress } from "@cyberlofi^_^/utils/formatMetaMask";
 import {
@@ -131,8 +130,6 @@ function UserOptions() {
       ) : (
         <></>
       )}
-
-      <MetaMaskError />
 
       <UserCircleIcon
         className="h-7 w-7 cursor-pointer rounded-lg p-[1px] text-lg text-white transition-colors duration-300 hover:bg-slate-100/20"

@@ -1,5 +1,6 @@
 import { LoginContext } from "@cyberlofi^_^/app/context/loginContext";
 import { useMetaMask } from "@cyberlofi^_^/hooks/useMetaMask";
+import { formatAddress } from "@cyberlofi^_^/utils/formatMetaMask";
 import {
   ArrowLeftOnRectangleIcon,
   ChatBubbleBottomCenterTextIcon,
@@ -15,6 +16,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -31,7 +33,7 @@ function HeaderSetting() {
 
   const panelArr = [
     {
-      name: session ? "" : accounts[0] && balance ? accounts[0] : "Login",
+      name: session ? "" : accounts[0] && balance ? "" : "Login",
       component: session ? (
         <div className="flex items-center gap-1 overflow-hidden">
           <Image
@@ -44,7 +46,15 @@ function HeaderSetting() {
           <h2>{session?.user?.name ?? "User Name"}</h2>
         </div>
       ) : (
-        <UserCircleIcon className="h-6 w-6 rounded-lg p-[1px] text-lg text-white transition-colors duration-300 md:h-7 md:w-7" />
+        <Link
+          className="flex w-full items-center gap-2"
+          href={`https://etherscan.io/address/${accounts[0]}`}
+          target="_blank"
+          data-tooltip="Open in Block Explorer"
+        >
+          <UserCircleIcon className="h-7 w-7 rounded-lg p-[1px] text-lg text-white" />
+          {formatAddress(accounts[0])}
+        </Link>
       ),
       isShow: true,
       feature: () => {
@@ -152,7 +162,9 @@ function HeaderSetting() {
   return (
     <button
       onBlur={() => {
-        setIsOpenHeaderSettings(false);
+        setTimeout(() => {
+          setIsOpenHeaderSettings(false);
+        }, 100);
       }}
       className="relative"
     >

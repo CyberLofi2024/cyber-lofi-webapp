@@ -1,6 +1,7 @@
 import { LoginContext } from "@cyberlofi^_^/app/context/loginContext";
 import MetaMaskError from "@cyberlofi^_^/components/MetaMask/MetaMaskError/MetaMaskError";
 import { useMetaMask } from "@cyberlofi^_^/hooks/useMetaMask";
+import { formatAddress } from "@cyberlofi^_^/utils/formatMetaMask";
 import {
   ArrowLeftOnRectangleIcon,
   CurrencyDollarIcon,
@@ -8,6 +9,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import React, { Fragment, useContext, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -47,9 +49,17 @@ function UserOptions() {
     },
     {
       id: 12,
-      name: accounts[0] ?? "Account",
+      name: accounts[0] ? "" : "Account",
       component: (
-        <UserCircleIcon className="h-7 w-7 rounded-lg p-[1px] text-lg text-white" />
+        <Link
+          className="flex w-full items-center gap-2"
+          href={`https://etherscan.io/address/${accounts[0]}`}
+          target="_blank"
+          data-tooltip="Open in Block Explorer"
+        >
+          <UserCircleIcon className="h-7 w-7 rounded-lg p-[1px] text-lg text-white" />
+          {formatAddress(accounts[0])}
+        </Link>
       ),
       ishowed: accounts[0] ?? false,
     },
@@ -100,7 +110,9 @@ function UserOptions() {
   return (
     <button
       onBlur={() => {
-        setIsOpenUserOptions(false);
+        setTimeout(() => {
+          setIsOpenUserOptions(false);
+        }, 100);
       }}
       className="relative"
     >

@@ -1,19 +1,20 @@
 import { useMetaMask } from "@cyberlofi^_^/hooks/useMetaMask";
-import { formatAddress } from "@cyberlofi^_^/utils/formatMetaMask";
 import React from "react";
 
 function MetaMaskButton() {
   const { wallet, hasProvider, isConnecting, connectMetaMask } = useMetaMask();
   return (
-    <div>
+    <div className="w-full">
       {!hasProvider && (
-        <a
-          className="bg-orange-500 p-3 text-white"
-          href="https://metamask.io"
-          target="_blank"
-        >
-          Install MetaMask
-        </a>
+        <div className="rounded-lg bg-orange-500  text-center hover:shadow-lg hover:shadow-white/25">
+          <a
+            className="inline-block p-2 text-lg font-semibold text-white"
+            href="https://metamask.io"
+            target="_blank"
+          >
+            Install MetaMask
+          </a>
+        </div>
       )}
       {window.ethereum?.isMetaMask && wallet.accounts.length < 1 && (
         <button
@@ -42,16 +43,6 @@ function MetaMaskButton() {
             <span className="pl-3">Connect wallet</span>
           </div>
         </button>
-      )}
-      {hasProvider && wallet.accounts.length > 0 && (
-        <a
-          className="bg-orange-500 p-3 text-white"
-          href={`https://etherscan.io/address/${wallet}`}
-          target="_blank"
-          data-tooltip="Open in Block Explorer"
-        >
-          {formatAddress(wallet.accounts[0])}
-        </a>
       )}
     </div>
   );

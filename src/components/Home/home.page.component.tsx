@@ -9,6 +9,7 @@ import LoginComponent from "@cyberlofi^_^/components/Login/login.component";
 import { LoginContext } from "@cyberlofi^_^/app/context/loginContext";
 import { musicData } from "@cyberlofi^_^/utils/testData";
 import { useSession } from "next-auth/react";
+import PwaUpdate from "../PwaUpdate/PwaUpdate";
 
 interface IMusicData {
   id: number;
@@ -61,6 +62,7 @@ function Home() {
   const [isToggled, toggle] = useState(true);
   return (
     <LoginContext.Provider value={{ isOpenLogin, setIsOpenLogin }}>
+      <PwaUpdate />
       <ToastContainer />
       <LoginComponent />
       <div className="relative h-screen" id="container">

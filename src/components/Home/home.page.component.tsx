@@ -13,6 +13,7 @@ import PwaUpdate from "../PwaUpdate/PwaUpdate";
 import { NoteTakingContext } from "@cyberlofi^_^/app/context/noteTakingContext";
 import NoteTakingToggle from "../toggles/NoteTakingToggle";
 import NoteTaking from "../Note/note.component";
+import BackgroundVideoComponent from "./backgroundVideo.component";
 
 interface IMusicData {
   id: number;
@@ -64,6 +65,7 @@ function Home() {
   const [isAudioPlayed, setAudioIsPlayed] = useState(false);
   const [isAudioMuted, setAudioIsMuted] = useState(false);
   const [isToggled, toggle] = useState(true);
+
   return (
     <LoginContext.Provider value={{ isOpenLogin, setIsOpenLogin }}>
       <NoteTakingContext.Provider value={{ isOpenNote, setIsOpenNote }}>
@@ -75,23 +77,9 @@ function Home() {
         <div className="relative h-screen" id="container">
           <div className="no-scrollbar relative h-screen w-screen overflow-scroll">
             <div className="absolute left-[150%] top-1/2 h-screen min-h-screen w-[177.77778vh] min-w-[100vw] -translate-x-1/2 -translate-y-1/2 md:left-[115%] lg:left-1/2 lg:w-full">
-              <video
-                hidden={src.id !== "day"}
-                src={backgroundVideos[0].src}
-                muted
-                loop
-                autoPlay
-                className="absolute left-0 top-0 h-full w-full md:static lg:object-cover"
-                preload="auto"
-              />
-              <video
-                hidden={src.id !== "night"}
-                src={backgroundVideos[1].src}
-                muted
-                loop
-                autoPlay
-                className="absolute left-0 top-0 h-full w-full md:static lg:object-cover"
-                preload="auto"
+              <BackgroundVideoComponent
+                src={src}
+                backgroundVideos={backgroundVideos}
               />
               <audio
                 id="au"

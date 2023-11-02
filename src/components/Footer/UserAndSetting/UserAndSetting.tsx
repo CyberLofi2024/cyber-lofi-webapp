@@ -1,7 +1,6 @@
-import { Cog8ToothIcon, UserCircleIcon } from "@heroicons/react/24/outline";
+import { Cog8ToothIcon } from "@heroicons/react/24/outline";
 import React, { useContext } from "react";
 import MoreSetting from "./MoreSetting";
-import { LoginContext } from "@cyberlofi^_^/app/context/loginContext";
 import UserOptions from "./UserOptions";
 
 function UserAndSetting() {

@@ -71,7 +71,7 @@ function PwaUpdate() {
     <div
       className={`${
         installable ? "animate-showContent" : "hidden"
-      } fixed z-20 w-full transition-all duration-1000 lg:hidden`}
+      } fixed z-20 w-full transition-all duration-1000 md:hidden`}
     >
       <div className="container m-auto flex items-center justify-between border-b bg-black/80 px-2 py-3 text-xs dark:border-gray-700 md:justify-center md:text-base xl:hidden">
         <div className="w-3/5">

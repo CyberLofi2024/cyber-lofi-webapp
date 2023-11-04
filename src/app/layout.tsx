@@ -1,6 +1,5 @@
 "use client";
 import "./globals.scss";
-import { MetaMaskUIProvider } from "@metamask/sdk-react-ui";
 import NextAuthSessionProvider from "./providers/sessionProvider";
 import { Session } from "next-auth";
 import { MetaMaskContextProvider } from "@cyberlofi^_^/hooks/useMetaMask";

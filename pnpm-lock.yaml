@@ -26,6 +26,9 @@ dependencies:
   '@metamask/detect-provider':
     specifier: ^2.0.0
     version: 2.0.0
+  '@metamask/providers':
+    specifier: ^13.1.0
+    version: 13.1.0
   '@metamask/sdk-react-ui':
     specifier: ^0.9.0
     version: 0.9.0(@types/react@18.2.21)(react-dom@18.2.0)(react-native@0.72.6)(react@18.2.0)(typescript@5.2.2)
@@ -2544,6 +2547,17 @@ packages:
     engines: {node: '>=14.0.0'}
     dev: false
 
+  /@metamask/json-rpc-engine@7.2.0:
+    resolution: {integrity: sha512-i3tiaKJ9pmk9vuyeV52D9STMNLzHS5J7WXuWSuri1/GTObQNxga8OdUdWHocX3jsY4j6XpfPVUu5dX4+SFkO4g==}
+    engines: {node: '>=16.0.0'}
+    dependencies:
+      '@metamask/rpc-errors': 6.1.0
+      '@metamask/safe-event-emitter': 3.0.0
+      '@metamask/utils': 8.2.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /@metamask/object-multiplex@1.2.0:
     resolution: {integrity: sha512-hksV602d3NWE2Q30Mf2Np1WfVKaGqfJRy9vpHAmelbaD0OkDt06/0KQkRR6UVYdMbTbkuEu8xN5JDUU80inGwQ==}
     engines: {node: '>=12.0.0'}
@@ -2585,6 +2599,35 @@ packages:
       json-rpc-middleware-stream: 4.2.3
       pump: 3.0.0
       webextension-polyfill-ts: 0.25.0
+    dev: false
+
+  /@metamask/providers@13.1.0:
+    resolution: {integrity: sha512-/2Ti81CwZ/9LLpAm9Law+7z1PYbR3EiNXNKCbkppOfxxR1MbC2ps8/GFTjk7UHEMhAVG4k9ziGW8mMsutNVxmA==}
+    engines: {node: '>=16.0.0'}
+    dependencies:
+      '@metamask/json-rpc-engine': 7.2.0
+      '@metamask/object-multiplex': 1.2.0
+      '@metamask/rpc-errors': 6.1.0
+      '@metamask/safe-event-emitter': 3.0.0
+      '@metamask/utils': 8.2.0
+      detect-browser: 5.3.0
+      extension-port-stream: 2.1.1
+      fast-deep-equal: 3.1.3
+      is-stream: 2.0.1
+      json-rpc-middleware-stream: 4.2.3
+      webextension-polyfill: 0.10.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /@metamask/rpc-errors@6.1.0:
+    resolution: {integrity: sha512-JQElKxai26FpDyRKO/yH732wI+BV90i1u6pOuDOpdADSbppB2g1pPh3AGST1zkZqEE9eIKIUw8UdBQ4rp3VTSg==}
+    engines: {node: '>=16.0.0'}
+    dependencies:
+      '@metamask/utils': 8.2.0
+      fast-safe-stringify: 2.1.1
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   /@metamask/safe-event-emitter@2.0.0:
@@ -2740,6 +2783,22 @@ packages:
       '@ethereumjs/tx': 4.2.0
       '@types/debug': 4.1.10
       debug: 4.3.4
+      semver: 7.5.4
+      superstruct: 1.0.3
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /@metamask/utils@8.2.0:
+    resolution: {integrity: sha512-Zjx6y0PPrf9B4pdZ8JHl0grwJf/qNJ1dzYQh10/QSlj7Ct9Qy+r9PzdgGUHgA4oHohe1Phwy8MFnzB6TWZE11A==}
+    engines: {node: '>=16.0.0'}
+    dependencies:
+      '@ethereumjs/tx': 4.2.0
+      '@noble/hashes': 1.3.2
+      '@scure/base': 1.1.3
+      '@types/debug': 4.1.10
+      debug: 4.3.4
+      pony-cause: 2.1.10
       semver: 7.5.4
       superstruct: 1.0.3
     transitivePeerDependencies:
@@ -11797,6 +11856,11 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.2
     dev: true
+
+  /pony-cause@2.1.10:
+    resolution: {integrity: sha512-3IKLNXclQgkU++2fSi93sQ6BznFuxSLB11HdvZQ6JW/spahf/P1pAHBQEahr20rs0htZW0UDkM1HmA+nZkXKsw==}
+    engines: {node: '>=12.0.0'}
+    dev: false
 
   /postcss-import@15.1.0(postcss@8.4.29):
     resolution: {integrity: sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==}

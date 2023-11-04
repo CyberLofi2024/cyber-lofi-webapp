@@ -1,6 +1,6 @@
 "use client";
 import "./globals.scss";
-// import { MetaMaskUIProvider } from "@metamask/sdk-react-ui";
+import { MetaMaskUIProvider } from "@metamask/sdk-react-ui";
 import NextAuthSessionProvider from "./providers/sessionProvider";
 import { Session } from "next-auth";
 import { MetaMaskContextProvider } from "@cyberlofi^_^/hooks/useMetaMask";
@@ -10,8 +10,8 @@ export default function RootLayout({
   children,
   session,
 }: {
-  children: React.ReactNode;
-  session: Session;
+  readonly children: React.ReactNode;
+  readonly session: Session;
 }) {
   return (
     <html lang="en">

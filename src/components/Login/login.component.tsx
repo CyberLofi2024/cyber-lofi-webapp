@@ -21,7 +21,6 @@ import MetaMaskButton from "./MetaMaskButton";
 
 function LoginComponent() {
   const { isOpenLogin, setIsOpenLogin } = useContext(LoginContext);
-  const router = useRouter();
   const { data: session } = useSession();
 
   const [isLogined, setIsLogined] = useState(false);
@@ -52,7 +51,7 @@ function LoginComponent() {
     } else {
       setIsLogined(false);
     }
-  }, [router, session, accounts[0], balance, accounts]);
+  }, [session, accounts[0], balance, accounts]);
 
   const {
     register,

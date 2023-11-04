@@ -10,8 +10,6 @@ import { LoginContext } from "@cyberlofi^_^/app/context/loginContext";
 import { musicData } from "@cyberlofi^_^/utils/testData";
 import { useSession } from "next-auth/react";
 import PwaUpdate from "../PwaUpdate/PwaUpdate";
-import { NoteTakingContext } from "@cyberlofi^_^/app/context/noteTakingContext";
-import NoteTakingToggle from "../toggles/NoteTakingToggle";
 import NoteTaking from "../Note/note.component";
 import BackgroundVideoComponent from "./backgroundVideo.component";
 
@@ -68,63 +66,60 @@ function Home() {
 
   return (
     <LoginContext.Provider value={{ isOpenLogin, setIsOpenLogin }}>
-      <NoteTakingContext.Provider value={{ isOpenNote, setIsOpenNote }}>
-        <PwaUpdate />
-        <ToastContainer />
-        <LoginComponent />
-        <NoteTakingToggle />
-        <NoteTaking />
-        <div className="relative h-screen" id="container">
-          <div className="no-scrollbar relative h-screen w-screen overflow-scroll">
-            <div className="absolute left-[150%] top-1/2 h-screen min-h-screen w-[177.77778vh] min-w-[100vw] -translate-x-1/2 -translate-y-1/2 md:left-[115%] lg:left-1/2 lg:w-full">
-              <BackgroundVideoComponent
-                src={src}
-                backgroundVideos={backgroundVideos}
-              />
-              <audio
-                id="au"
-                src={AudioDefault}
-                preload="auto"
-                // autoPlay
-                loop
-              ></audio>
-              {musicPoints?.map((item) => {
-                return (
-                  <ThemeMusic
-                    key={item.id}
-                    title={item.type}
-                    audio={item.audio}
-                    top={item.top ?? "auto"}
-                    bottom={item.bottom ?? "auto"}
-                    left={item.left ?? "auto"}
-                    right={item.right ?? "auto"}
-                    isPlaying={item.play}
-                  />
-                );
-              })}
-            </div>
+      <PwaUpdate />
+      <ToastContainer />
+      <LoginComponent />
+      <NoteTaking />
+      <div className="relative h-screen" id="container">
+        <div className="no-scrollbar relative h-screen w-screen overflow-scroll">
+          <div className="absolute left-[150%] top-1/2 h-screen min-h-screen w-[177.77778vh] min-w-[100vw] -translate-x-1/2 -translate-y-1/2 md:left-[115%] lg:left-1/2 lg:w-full">
+            <BackgroundVideoComponent
+              src={src}
+              backgroundVideos={backgroundVideos}
+            />
+            <audio
+              id="au"
+              src={AudioDefault}
+              preload="auto"
+              // autoPlay
+              loop
+            ></audio>
+            {musicPoints?.map((item) => {
+              return (
+                <ThemeMusic
+                  key={item.id}
+                  title={item.type}
+                  audio={item.audio}
+                  top={item.top ?? "auto"}
+                  bottom={item.bottom ?? "auto"}
+                  left={item.left ?? "auto"}
+                  right={item.right ?? "auto"}
+                  isPlaying={item.play}
+                />
+              );
+            })}
           </div>
-
-          <HeaderComponent
-            isAudioPlayed={isAudioPlayed}
-            setIsAudioPlayed={setAudioIsPlayed}
-            logState={logState}
-            isToggled={isToggled}
-            toggle={toggle}
-            isAudioMuted={isAudioMuted}
-            setIsAudioMuted={setAudioIsMuted}
-          />
-          <FooterComponent
-            isAudioPlayed={isAudioPlayed}
-            setIsAudioPlayed={setAudioIsPlayed}
-            logState={logState}
-            isToggled={isToggled}
-            toggle={toggle}
-            isAudioMuted={isAudioMuted}
-            setIsAudioMuted={setAudioIsMuted}
-          />
         </div>
-      </NoteTakingContext.Provider>
+
+        <HeaderComponent
+          isAudioPlayed={isAudioPlayed}
+          setIsAudioPlayed={setAudioIsPlayed}
+          logState={logState}
+          isToggled={isToggled}
+          toggle={toggle}
+          isAudioMuted={isAudioMuted}
+          setIsAudioMuted={setAudioIsMuted}
+        />
+        <FooterComponent
+          isAudioPlayed={isAudioPlayed}
+          setIsAudioPlayed={setAudioIsPlayed}
+          logState={logState}
+          isToggled={isToggled}
+          toggle={toggle}
+          isAudioMuted={isAudioMuted}
+          setIsAudioMuted={setAudioIsMuted}
+        />
+      </div>
     </LoginContext.Provider>
   );
 }

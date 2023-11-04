@@ -1,11 +1,12 @@
-import { NoteTakingContext } from "@cyberlofi^_^/app/context/noteTakingContext";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useContext } from "react";
+import { useSearchParams } from "next/navigation";
+import React from "react";
 
 function NoteTaking() {
-  const { isOpenNote } = useContext(NoteTakingContext);
-  return isOpenNote ? (
+  const searchParams = useSearchParams();
+  const isOpenNoteTaking = searchParams?.get("note");
+  return isOpenNoteTaking === "true" ? (
     <div className="fixed bottom-0 left-0 right-0 top-0 z-10">
       <div className="grid-row-1 m-10 grid max-h-[80vh] grid-flow-row gap-3 overflow-auto rounded-xl bg-white/20 p-5 md:grid-cols-3">
         <div className="rounded-xl bg-red-300 p-3 text-blue-900">

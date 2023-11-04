@@ -1,9 +1,10 @@
 "use client";
 import "./globals.scss";
-import { MetaMaskUIProvider } from "@metamask/sdk-react-ui";
+// import { MetaMaskUIProvider } from "@metamask/sdk-react-ui";
 import NextAuthSessionProvider from "./providers/sessionProvider";
 import { Session } from "next-auth";
 import { MetaMaskContextProvider } from "@cyberlofi^_^/hooks/useMetaMask";
+import { Hotkeys } from "@cyberlofi^_^/components/Hotkeys/Hotkeys";
 
 export default function RootLayout({
   children,
@@ -18,6 +19,7 @@ export default function RootLayout({
         <MetaMaskContextProvider>
           <NextAuthSessionProvider session={session}>
             <main id="main" style={{ flexGrow: 1 }}>
+              <Hotkeys />
               {children}
             </main>
           </NextAuthSessionProvider>

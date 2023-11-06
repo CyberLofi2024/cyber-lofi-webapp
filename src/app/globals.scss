@@ -1,5 +1,11 @@
 @tailwind base;
 @tailwind components;
+// .paper {
+//   @apply relative h-full w-full bg-white/90 text-black shadow-sm;
+//   &:before {
+//     @apply absolute left-12 h-full w-[2px] bg-red-700 content-[""];
+//   }
+// }
 @tailwind utilities;
 
 @layer components {
@@ -86,4 +92,79 @@ footer {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
+}
+
+//note
+@import url(https://fonts.googleapis.com/css?family=Indie+Flower);
+
+.paper {
+  position: relative;
+  height: 75vh;
+  width: 100%;
+  background: rgba(255, 255, 255);
+  color: black;
+  box-shadow: 0px 0px 5px 0px #888;
+}
+.paper::before {
+  content: "";
+  position: absolute;
+  left: 45px;
+  height: 100%;
+  width: 2px;
+  background: rgba(255, 0, 0, 0.4);
+}
+
+.lines {
+  margin-top: 40px;
+  height: calc(100% - 40px);
+  width: 100%;
+  background-image: repeating-linear-gradient(
+    white 0px,
+    white 24px,
+    steelblue 25px
+  );
+}
+
+.title {
+  position: absolute;
+  font-size: 20px;
+  font-weight: 700;
+  top: 20px;
+  left: 55px;
+  bottom: 10px;
+  right: 10px;
+  line-height: 25px;
+  font-family: "Indie Flower";
+  overflow: hidden;
+  outline: none;
+}
+
+.text {
+  position: absolute;
+  top: 65px;
+  left: 55px;
+  bottom: 10px;
+  right: 10px;
+  line-height: 25px;
+  font-family: "Indie Flower";
+  overflow: hidden;
+  outline: none;
+}
+.holes {
+  position: absolute;
+  left: 10px;
+  height: 25px;
+  width: 25px;
+  background: lightgoldenrodyellow;
+  border-radius: 50%;
+  box-shadow: inset 0px 0px 2px 0px #888;
+}
+.hole-top {
+  top: 10%;
+}
+.hole-middle {
+  top: 50%;
+}
+.hole-bottom {
+  bottom: 10%;
 }

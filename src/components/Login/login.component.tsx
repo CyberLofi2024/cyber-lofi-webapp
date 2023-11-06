@@ -9,13 +9,11 @@ import {
   faUserAstronaut,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { signIn, useSession } from "next-auth/react";
 import GoogleLoginButton from "./GoogleLoginButton";
 import { LoginContext } from "@cyberlofi^_^/app/context/loginContext";
 import { IUserLogin } from "@cyberlofi^_^/types/allTypes";
-
 import { useMetaMask } from "@cyberlofi^_^/hooks/useMetaMask";
 import MetaMaskButton from "./MetaMaskButton";
 

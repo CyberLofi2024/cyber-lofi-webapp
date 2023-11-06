@@ -24,10 +24,6 @@ function UserOptions() {
     wallet: { accounts, balance },
   } = useMetaMask();
 
-  const handler = (...args: unknown[]) => {
-    console.log("args: ", args);
-  };
-
   const panelArr = [
     {
       id: 11,
@@ -77,7 +73,10 @@ function UserOptions() {
         <ArrowLeftOnRectangleIcon className="h-7 w-7 rounded-lg p-[1px] text-lg text-white" />
       ),
       feature: () => {
-        window.ethereum?.on("disconnect", handler);
+        // if (window.ethereum) {
+        //   window.ethereum.selectedAddress = null;
+        // }
+
         setIsOpenUserOptions(false);
         signOut({ callbackUrl: "/", redirect: false }).then((res) => {
           toast.info("Log out successfully!", {

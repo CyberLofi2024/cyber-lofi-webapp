@@ -34,7 +34,6 @@ const BackgroundVideoComponent = memo(({ src, backgroundVideos }: Props) => {
         className="absolute left-0 top-0 h-full w-full md:static lg:object-cover"
         preload="none"
       />
-      ;
     </>
   );
 });

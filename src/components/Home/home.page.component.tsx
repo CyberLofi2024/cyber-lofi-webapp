@@ -12,6 +12,7 @@ import { useSession } from "next-auth/react";
 import PwaUpdate from "../PwaUpdate/PwaUpdate";
 import NoteTaking from "../Note/note.component";
 import BackgroundVideoComponent from "./backgroundVideo.component";
+import LoadingIndicator from "../loading/loading.component";
 
 interface IMusicData {
   id: number;
@@ -27,9 +28,10 @@ interface IMusicData {
 function Home() {
   const { data: session, status } = useSession();
   const [isOpenLogin, setIsOpenLogin] = useState(false);
-  const [isOpenNote, setIsOpenNote] = useState(false);
 
   const [musicPoints, setMusicPoints] = useState<IMusicData[]>();
+  const [isBackgroundPlaying, setIsBackgroundPlaying] = useState(false);
+  console.log("isBackgroundPlaying: ", isBackgroundPlaying);
 
   useEffect(() => {
     // Read the JSON data
@@ -66,6 +68,7 @@ function Home() {
 
   return (
     <LoginContext.Provider value={{ isOpenLogin, setIsOpenLogin }}>
+      {isBackgroundPlaying ? <></> : <LoadingIndicator />}
       <PwaUpdate />
       <ToastContainer />
       <LoginComponent />
@@ -76,6 +79,7 @@ function Home() {
             <BackgroundVideoComponent
               src={src}
               backgroundVideos={backgroundVideos}
+              setIsBackgroundPlaying={setIsBackgroundPlaying}
             />
             <audio
               id="au"

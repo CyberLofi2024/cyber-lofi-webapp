@@ -31,7 +31,7 @@ function CyberOpenSwiper() {
             height={50000}
             alt={item.name}
             src="/medias/img_1.gif"
-            className="rounded-xl"
+            className="h-[60vh] rounded-xl object-cover"
           />
         </SwiperSlide>
       );
@@ -47,11 +47,10 @@ function CyberOpenSwiper() {
           pauseOnMouseEnter: true,
         }}
         spaceBetween={20}
-        slidesPerView={2.5}
         navigation
         keyboard
         freeMode
-        speed={1000}
+        speed={2000}
         loop
       >
         {onRenderSilder()}

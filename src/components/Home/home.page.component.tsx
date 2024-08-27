@@ -44,12 +44,12 @@ function Home() {
   const backgroundVideos = [
     {
       id: "day",
-      src: "https://lofico.nyc3.cdn.digitaloceanspaces.com/scenes/lake-house/Outside_Day.mp4",
+      src: "https://www.youtube.com/embed/OO2kPK5-qno?autoplay=1&mute=1&loop=1&playlist=OO2kPK5-qno&controls=0&modestbranding=1&showinfo=0&iv_load_policy=3&rel=0&fs=0&disablekb=1&playsinline=1",
       audio: "",
     },
     {
       id: "night",
-      src: "https://lofico.nyc3.cdn.digitaloceanspaces.com/scenes/lake-house/outside_night.mp4",
+      src: "https://www.youtube.com/embed/MZhivjxcF-M?si=ILvrFtVgXBKAFwL0&autoplay=1&mute=1&loop=1&playlist=MZhivjxcF-M&controls=0&modestbranding=1&showinfo=0&iv_load_policy=3&rel=0&fs=0&disablekb=1&playsinline=1",
       audio: "",
     },
   ];

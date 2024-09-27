@@ -7,6 +7,7 @@ import AudioPlayer from "./AudioPlayer/AudioPlayer";
 import DecorationAndOthers from "./DecorationAndOthers/DecorationAndOthers";
 import ScreenTools from "./ScreenTools/ScreenTools";
 import UserAndSetting from "./UserAndSetting/UserAndSetting";
+import Link from "next/link";
 
 interface Props {
   logState: (state: boolean) => void;
@@ -106,13 +107,15 @@ function FooterComponent({
           </div>
           <div className="flex items-center">
             {onRenderTools()}
-            <Image
-              className="ml-5 h-fit w-7"
-              width={5000}
-              height={5000}
-              src="/image.png"
-              alt="Scenes"
-            />
+            <Link href={"/cyber-open"}>
+              <Image
+                className="ml-5 h-fit w-7"
+                width={5000}
+                height={5000}
+                src="/image.png"
+                alt="Scenes"
+              />
+            </Link>
           </div>
           <UserAndSetting />
         </div>
